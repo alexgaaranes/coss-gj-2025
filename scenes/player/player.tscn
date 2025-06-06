@@ -83,14 +83,14 @@ animations = [{
 radius = 8.0
 height = 32.0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_8afob")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -23)
 sprite_frames = SubResource("SpriteFrames_kvlxm")
-animation = &"Walk"
-frame_progress = 0.952009
+animation = &"Idle"
+frame_progress = 0.969688
 
 [node name="Area2D" type="Area2D" parent="."]
 
