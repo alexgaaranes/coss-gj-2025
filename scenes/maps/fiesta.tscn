@@ -1,3 +1,19 @@
-[gd_scene format=3 uid="uid://bhjygflt3q81y"]
+[gd_scene load_steps=2 format=3 uid="uid://bhjygflt3q81y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x31xe"]
+size = Vector2(1360, 112)
 
 [node name="Fiesta" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(616, 664)
+shape = SubResource("RectangleShape2D_x31xe")
+
+[node name="ColorRect" type="ColorRect" parent="Area2D"]
+offset_left = -64.0
+offset_top = 608.0
+offset_right = 1296.0
+offset_bottom = 720.0
+color = Color(0.65098, 0.403922, 0.286275, 1)
