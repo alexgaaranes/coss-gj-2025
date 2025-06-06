@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-enum State { IDLE, WALK, TURN }
+enum State { IDLE, WALK, TURN, PURSUE, ANGRY }
 
 @export var SPEED: float = 50.0
 var MIN_DECISION_TIME: float = 0.5
@@ -13,7 +13,13 @@ var current_state: State = State.IDLE
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
 @onready var playerDetector: Area2D = get_node("PlayerDetector")
 
+var target_position: Vector2 = Vector2.ZERO
+var angry_timer_started: bool = false
+
 func _ready():
+	GlobalSignals.connect("send_player_location", self._on_send_player_location)
+	GlobalSignals.connect("is_stealing_food", self._on_is_stealing_food)
+
 	sprite.play("Idle")
 	sprite.flip_h = direction < 0
 	randomize()
@@ -21,6 +27,31 @@ func _ready():
 
 func _process(delta):
 	match current_state:
+		State.ANGRY:
+			velocity.x = 0
+			sprite.play("Wait")
+			if not angry_timer_started:
+				timer.start(3)
+				angry_timer_started = true
+		State.PURSUE:
+			sprite.play("Walk")
+			
+			# Go to place until you are there
+			var dir = (target_position - position).normalized()
+			velocity.x = dir.x * SPEED
+			
+			# Flip the dood
+			direction = 1 if dir.x > 0 else -1
+			sprite.flip_h = direction < 0
+			
+			# Bro is alr there, stop chasin
+			if position.distance_to(target_position) < 150:
+				print("I am done")
+				velocity.x = 0
+				sprite.play("Idle")
+				current_state = State.IDLE
+				timer.stop()
+				timer.start(0.5)
 		State.IDLE:
 			sprite.play("Idle")
 			velocity.x = 0
@@ -31,10 +62,10 @@ func _process(delta):
 			sprite.play("Idle")
 			velocity.x = 0
 			
-
 	move_and_slide()
 
 func pick_random_behavior():
+	# Only up to the 3
 	var choice = randi() % 3
 	current_state = choice
 	match current_state:
@@ -50,12 +81,13 @@ func pick_random_behavior():
 			var playerArea = get_player_in_detection_zone()
 			if playerArea:
 				evaluate_player_position(playerArea.position)
-
+	
 	var wait_time = randf_range(MIN_DECISION_TIME, MAX_DECISION_TIME)
 	timer.start(wait_time)
 
 func _on_timer_timeout() -> void:
-	pick_random_behavior()
+	if current_state != State.PURSUE:
+		pick_random_behavior()
 	
 func get_player_in_detection_zone() -> Area2D:
 	var areas = playerDetector.get_overlapping_areas()
@@ -68,12 +100,28 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().get_name() == "Player":
 		evaluate_player_position(area.position)
 			
-func evaluate_player_position(player_pos: Vector2) -> void:
+func evaluate_player_position(player_pos: Vector2) -> bool:
 	var areaDirection := (player_pos - self.position).normalized()
 	areaDirection.x = 1 if areaDirection.x > 0 else -1
 
 	if areaDirection.x == direction:
 		print("You are facing me")
-		
+		return true
 	else:
 		print("You are behind me")
+		return false
+		
+func _on_send_player_location(data):
+	current_state = State.PURSUE;
+	target_position = data
+	print("Chasing!")
+	
+func _on_is_stealing_food():
+	var isCaught = false
+	var playerArea = get_player_in_detection_zone()
+	if playerArea:
+		isCaught = evaluate_player_position(playerArea.position)
+		
+	if isCaught:
+		print("Caught ya!")
+		current_state = State.ANGRY

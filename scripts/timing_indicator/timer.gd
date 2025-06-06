@@ -5,6 +5,8 @@ extends CanvasLayer
 @onready var zone = $BarContainer/Zone
 @onready var bar_bg = $BarContainer/Bar
 
+signal has_failed_stealing_food
+
 var tween: Tween
 var feedback_tween: Tween
 var is_active = false
@@ -60,6 +62,7 @@ func _input(event):
 		else:
 			print("Skill Check Failed")
 			input_feedback(false)
+			GlobalSignals.emit_signal("has_failed_stealing_food")
 		is_active = false
 		
 

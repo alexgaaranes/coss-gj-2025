@@ -8,7 +8,7 @@ func _on_area_2d_area_entered(area):
 func _process(delta):
 	if Input.is_action_just_released("interact_food") and is_overlapping:
 		spawn_timer()
-	
+		GlobalSignals.emit_signal("is_stealing_food")
 	# check if there is existing timer
 	if get_tree().root.get_node("Timer") == null and not is_overlapping:
 		is_overlapping = true
@@ -28,5 +28,6 @@ func spawn_timer():
 	get_tree().root.add_child(timing_indicator)
 
 func del_timer():
+	GlobalSignals.emit_signal("is_finished_stealing_food")
 	var timer = get_tree().root.get_node("Timer")
 	if timer != null: timer.queue_free()

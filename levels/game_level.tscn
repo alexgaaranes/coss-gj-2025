@@ -20,11 +20,11 @@ position = Vector2(168, 360)
 [node name="Fiesta" parent="." instance=ExtResource("1_sklrn")]
 
 [node name="Player" parent="Fiesta" instance=ExtResource("2_d65c1")]
-position = Vector2(549, 652)
+position = Vector2(93, 649)
 scale = Vector2(6.5, 6.5)
 speed = 260.0
 
 [node name="HostNpc" parent="." instance=ExtResource("4_n0b0m")]
-position = Vector2(873, 651)
+position = Vector2(1350, 653)
 scale = Vector2(8, 6.504)
 SPEED = 200.0
