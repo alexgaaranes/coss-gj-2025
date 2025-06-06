@@ -58,6 +58,7 @@ func _input(event):
 			tween.kill()
 		if skill_check():
 			print("Skill Check Successful!")
+			add_food_weight()
 			input_feedback(true)
 		else:
 			print("Skill Check Failed")
@@ -87,6 +88,7 @@ func _on_feedback_finished():
 	bar.scale = Vector2(1, 1) # reset scale just in case
 	
 	get_parent().queue_free()
+	get_tree().root.get_node("GameLevel").get_node("Food").set_overlapping(true)
 
 func _cancel_skill_check():
 	if tween:
@@ -96,3 +98,7 @@ func _cancel_skill_check():
 
 	bar.scale = Vector2(1, 1)
 	hide()
+
+func add_food_weight():
+	var player = get_tree().root.get_node("GameLevel").get_node("Map").get_node('Player')
+	player.add_food()
