@@ -1,9 +1,10 @@
-[gd_scene load_steps=37 format=3 uid="uid://d254kcbt6scr1"]
+[gd_scene load_steps=38 format=3 uid="uid://co61ddvy502tm"]
 
 [ext_resource type="Texture2D" uid="uid://bshipt0jrbvwy" path="res://sample_assets/mountain.png" id="1_8s275"]
 [ext_resource type="Script" uid="uid://8clmgftrx0ck" path="res://scripts/npc/npc_1.gd" id="4_avdsn"]
 [ext_resource type="Texture2D" uid="uid://wxgceqxjsnje" path="res://sample_assets/BoxerIdle.png" id="5_6nuxs"]
 [ext_resource type="Texture2D" uid="uid://ct2yerkj25pvu" path="res://sample_assets/BoxerWalkRight.png" id="5_8tlly"]
+[ext_resource type="PackedScene" uid="uid://djbg3adro7lij" path="res://scenes/npc/npc_followpath2d.tscn" id="5_avdsn"]
 
 [sub_resource type="Curve2D" id="Curve2D_dirr0"]
 _data = {
@@ -246,6 +247,7 @@ texture = ExtResource("1_8s275")
 centered = false
 
 [node name="NPC_1" type="Path2D" parent="."]
+visible = false
 curve = SubResource("Curve2D_dirr0")
 
 [node name="npc_1" type="PathFollow2D" parent="NPC_1"]
@@ -265,6 +267,7 @@ animation = &"idle"
 [node name="IdleTimer" type="Timer" parent="NPC_1/npc_1"]
 
 [node name="NPC_2" type="Path2D" parent="."]
+visible = false
 position = Vector2(-512, 0)
 curve = SubResource("Curve2D_dwc6h")
 
@@ -285,6 +288,7 @@ animation = &"idle"
 [node name="IdleTimer" type="Timer" parent="NPC_2/npc_1"]
 
 [node name="NPC_3" type="Path2D" parent="."]
+visible = false
 position = Vector2(-280, 0)
 curve = SubResource("Curve2D_avdsn")
 
@@ -295,7 +299,7 @@ rotates = false
 script = ExtResource("4_avdsn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NPC_3/npc_1"]
-position = Vector2(19.807, -48)
+position = Vector2(19.808, -48)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_2wkxm")
 animation = &"idle"
@@ -304,5 +308,7 @@ animation = &"idle"
 
 [node name="IdleTimer" type="Timer" parent="NPC_3/npc_1"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
+[node name="npc_followpath2d" parent="." instance=ExtResource("5_avdsn")]
+position = Vector2(776, 504)
+
+[editable path="npc_followpath2d"]

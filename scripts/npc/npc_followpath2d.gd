@@ -15,10 +15,14 @@ enum State { IDLE, WALK }
 @export_range(2, 2, 0.1) var min_walk_time: float = 2.0
 @export_range(2, 6, 0.1) var max_walk_time: float = 4.0
 
+var is_roaming = true
+var is_chatting = false
+
 var current_state: State
 var last_global_position: Vector2
 
 func _ready() -> void:
+	#randomize()
 	last_global_position = global_position
 	
 	# connect the timer nodes
