@@ -1,13 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://41dwkup4ipxm"]
+[gd_scene load_steps=5 format=3 uid="uid://41dwkup4ipxm"]
 
 [ext_resource type="PackedScene" uid="uid://cha2wnaqrkf7s" path="res://scenes/food/food.tscn" id="1_d65c1"]
 [ext_resource type="PackedScene" uid="uid://bhjygflt3q81y" path="res://scenes/maps/fiesta.tscn" id="1_sklrn"]
 [ext_resource type="PackedScene" uid="uid://6er8nk8tyg17" path="res://scenes/player/player.tscn" id="2_d65c1"]
+[ext_resource type="PackedScene" uid="uid://kxmh1ixtccin" path="res://scenes/npc/host_npc.tscn" id="4_n0b0m"]
 
 [node name="GameLevel" type="Node2D"]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(640, 360)
 
 [node name="Label" type="Label" parent="."]
 offset_left = 576.0
@@ -22,4 +20,9 @@ position = Vector2(168, 360)
 [node name="Fiesta" parent="." instance=ExtResource("1_sklrn")]
 
 [node name="CharacterBody2D" parent="Fiesta" instance=ExtResource("2_d65c1")]
-position = Vector2(424, 224)
+position = Vector2(549, 652)
+scale = Vector2(6.5, 6.5)
+
+[node name="HostNpc" parent="." instance=ExtResource("4_n0b0m")]
+position = Vector2(873, 651)
+scale = Vector2(8, 6.504)
