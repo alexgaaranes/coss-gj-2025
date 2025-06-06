@@ -1,5 +1,6 @@
 extends Node
-
+# Global signal provider
+# To avoid complex node accessing
 signal has_failed_stealing_food
 signal send_player_location
 signal is_stealing_food

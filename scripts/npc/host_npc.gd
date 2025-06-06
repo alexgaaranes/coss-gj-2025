@@ -6,14 +6,21 @@ enum State { IDLE, WALK, TURN, PURSUE, ANGRY }
 var MIN_DECISION_TIME: float = 0.5
 var MAX_DECISION_TIME: float = 2.0
 
+# Determines which direction facing
 var direction: int = 1  # 1 = left, -1 = right
+
+# What current action is bro performing
 var current_state: State = State.IDLE
 
+# Cooldown for randomized actions
 @onready var timer: Timer = get_node("Timer")
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
 @onready var playerDetector: Area2D = get_node("PlayerDetector")
 
+# The position of the player when they fail the timing
 var target_position: Vector2 = Vector2.ZERO
+
+# Boolean switch logic
 var angry_timer_started: bool = false
 
 func _ready():
@@ -78,6 +85,8 @@ func pick_random_behavior():
 			direction *= -1
 			sprite.flip_h = direction < 0
 			
+			# When turning, check if the newly turned
+			# direction has the player
 			var playerArea = get_player_in_detection_zone()
 			if playerArea:
 				evaluate_player_position(playerArea.position)
@@ -85,10 +94,14 @@ func pick_random_behavior():
 	var wait_time = randf_range(MIN_DECISION_TIME, MAX_DECISION_TIME)
 	timer.start(wait_time)
 
+# When timer gets timedout, reroll a new random action
+# If not pursuing
 func _on_timer_timeout() -> void:
 	if current_state != State.PURSUE:
 		pick_random_behavior()
-	
+
+# Checks if player is currently in vision
+# Returns the Area2D of the player
 func get_player_in_detection_zone() -> Area2D:
 	var areas = playerDetector.get_overlapping_areas()
 	for area in areas:
@@ -99,7 +112,9 @@ func get_player_in_detection_zone() -> Area2D:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().get_name() == "Player":
 		evaluate_player_position(area.position)
-			
+
+# Boolean function to check if
+# Player is in front or not
 func evaluate_player_position(player_pos: Vector2) -> bool:
 	var areaDirection := (player_pos - self.position).normalized()
 	areaDirection.x = 1 if areaDirection.x > 0 else -1
@@ -110,12 +125,14 @@ func evaluate_player_position(player_pos: Vector2) -> bool:
 	else:
 		print("You are behind me")
 		return false
-		
+
+# Listener for failed skill check signal
 func _on_send_player_location(data):
 	current_state = State.PURSUE;
 	target_position = data
 	print("Chasing!")
-	
+
+# Listener for skill check event
 func _on_is_stealing_food():
 	var isCaught = false
 	var playerArea = get_player_in_detection_zone()
