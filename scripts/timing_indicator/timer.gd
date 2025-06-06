@@ -61,6 +61,7 @@ func _input(event):
 			print("Skill Check Failed")
 			input_feedback(false)
 		is_active = false
+		
 
 	elif event.is_action_pressed("ui_cancel"):
 		print("Skill Check Cancelled")
@@ -81,6 +82,8 @@ func _on_feedback_finished():
 	print("Feedback animation finished.")
 	hide()
 	bar.scale = Vector2(1, 1) # reset scale just in case
+	
+	get_parent().queue_free()
 
 func _cancel_skill_check():
 	if tween:
