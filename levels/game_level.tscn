@@ -19,7 +19,7 @@ text = "game level scene"
 [node name="Food" parent="." instance=ExtResource("1_d65c1")]
 position = Vector2(168, 360)
 
-[node name="Fiesta" parent="." instance=ExtResource("1_sklrn")]
+[node name="Map" parent="." instance=ExtResource("1_sklrn")]
 
-[node name="CharacterBody2D" parent="Fiesta" instance=ExtResource("2_d65c1")]
+[node name="Player" parent="Map" instance=ExtResource("2_d65c1")]
 position = Vector2(424, 224)

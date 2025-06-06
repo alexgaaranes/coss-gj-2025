@@ -18,3 +18,6 @@ func _physics_process(delta):
 		velocity = velocity.normalized() * speed / weight
 	
 	position += velocity * delta 
+
+func add_food():
+	weight += 0.2
