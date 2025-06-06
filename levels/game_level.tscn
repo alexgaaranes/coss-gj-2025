@@ -1,3 +1,21 @@
-[gd_scene format=3 uid="uid://41dwkup4ipxm"]
+[gd_scene load_steps=3 format=3 uid="uid://41dwkup4ipxm"]
+
+[ext_resource type="PackedScene" uid="uid://bhjygflt3q81y" path="res://scenes/maps/fiesta.tscn" id="1_sklrn"]
+[ext_resource type="PackedScene" uid="uid://6er8nk8tyg17" path="res://scenes/player/player.tscn" id="2_d65c1"]
 
 [node name="GameLevel" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 576.0
+offset_top = 40.0
+offset_right = 708.0
+offset_bottom = 63.0
+text = "game level scene"
+
+[node name="Fiesta" parent="." instance=ExtResource("1_sklrn")]
+
+[node name="CharacterBody2D" parent="Fiesta" instance=ExtResource("2_d65c1")]
+position = Vector2(360, 224)

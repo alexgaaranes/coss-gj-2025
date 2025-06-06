@@ -1,3 +1,40 @@
-[gd_scene format=3 uid="uid://5hdpe16uptb2"]
+[gd_scene load_steps=2 format=3 uid="uid://5hdpe16uptb2"]
 
-[node name="Menu" type="Node2D"]
+[ext_resource type="Script" uid="uid://c580jk435tvls" path="res://scripts/level/menu.gd" id="1_cnlwo"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cnlwo")
+
+[node name="Title_Lbl" type="Label" parent="."]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 121.0
+offset_right = 1087.0
+offset_bottom = 258.0
+theme_override_font_sizes/font_size = 100
+text = "Sharon's Takeout"
+
+[node name="Start_Btn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 344.0
+offset_right = 752.0
+offset_bottom = 416.0
+text = "Start"
+
+[node name="Quit_Btn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 504.0
+offset_right = 747.0
+offset_bottom = 575.0
+text = "Quit"
+
+[connection signal="pressed" from="Start_Btn" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="Quit_Btn" to="." method="_on_quit_btn_pressed"]
