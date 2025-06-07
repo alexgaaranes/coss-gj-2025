@@ -56,11 +56,14 @@ func game_won() -> void:
 	game_over = true
 	print("You won! Max points reached")
 	hud.show_game_win() 
+	get_tree().paused = true
 
 func game_lost() -> void:
 	game_over = true
 	print("Game Over!")
 	hud.show_game_over() 
+	get_tree().paused = true
+	
 #uncomment this function for testing of winning condition
 #func test_points_sequence() -> void:
 	#var test_points = [0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000]
@@ -70,7 +73,9 @@ func game_lost() -> void:
 		#await get_tree().create_timer(1.0).timeout
 
 func _on_restart_button_pressed() -> void:
+	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 func _on_return_button_pressed() -> void:
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://levels/menu.tscn")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxoh4feehd3jv"]
+[gd_scene load_steps=7 format=3 uid="uid://bxoh4feehd3jv"]
 
 [ext_resource type="Script" uid="uid://crn4pk3s2qx4r" path="res://scripts/game/hud.gd" id="1_7qq33"]
 [ext_resource type="Texture2D" uid="uid://ukrd730t4oj8" path="res://assets/tupperware_empty.png" id="1_8ovie"]
 [ext_resource type="Script" uid="uid://bcsua7gy1o8wy" path="res://scripts/game/game_logic.gd" id="1_idxpj"]
 [ext_resource type="Texture2D" uid="uid://dkw7328yhi2b2" path="res://assets/tupperware_half.png" id="3_s6cuu"]
 [ext_resource type="Texture2D" uid="uid://dx8vug7mtmax4" path="res://assets/tupperware_full.png" id="4_idxpj"]
+[ext_resource type="Texture2D" uid="uid://w6kmucc6aicl" path="res://assets/ui/buttons/credits_button.png" id="6_wjtsn"]
 
 [node name="GameLogic" type="Control"]
 layout_mode = 3
@@ -65,58 +66,62 @@ grow_horizontal = 2
 horizontal_alignment = 1
 
 [node name="GameOverPanel" type="Panel" parent="HUD"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="HUD/GameOverPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ButtonContainer" type="HBoxContainer" parent="HUD/GameOverPanel"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 44.0
-offset_right = 30.0
-offset_bottom = 84.0
-
-[node name="RestartButton" type="Button" parent="HUD/GameOverPanel/ButtonContainer"]
+[node name="ButtonContainer" type="HBoxContainer" parent="HUD/GameOverPanel/CenterContainer"]
 layout_mode = 2
+alignment = 1
 
-[node name="ReturnButton" type="Button" parent="HUD/GameOverPanel/ButtonContainer"]
+[node name="RestartButton" type="TextureButton" parent="HUD/GameOverPanel/CenterContainer/ButtonContainer"]
+process_mode = 3
 layout_mode = 2
+texture_normal = ExtResource("6_wjtsn")
+
+[node name="ReturnButton" type="TextureButton" parent="HUD/GameOverPanel/CenterContainer/ButtonContainer"]
+process_mode = 3
+layout_mode = 2
+texture_normal = ExtResource("6_wjtsn")
 
 [node name="GameWinPanel" type="Panel" parent="HUD"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ButtonContainer" type="HBoxContainer" parent="HUD/GameWinPanel"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 44.0
-offset_right = 50.0
-offset_bottom = 84.0
+[node name="CenterContainer" type="CenterContainer" parent="HUD/GameWinPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="RestartButton" type="Button" parent="HUD/GameWinPanel/ButtonContainer"]
+[node name="ButtonContainer" type="HBoxContainer" parent="HUD/GameWinPanel/CenterContainer"]
 layout_mode = 2
 
-[node name="ReturnButton" type="Button" parent="HUD/GameWinPanel/ButtonContainer"]
+[node name="RestartButton" type="TextureButton" parent="HUD/GameWinPanel/CenterContainer/ButtonContainer"]
 layout_mode = 2
+texture_normal = ExtResource("6_wjtsn")
 
-[connection signal="pressed" from="HUD/GameOverPanel/ButtonContainer/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="HUD/GameOverPanel/ButtonContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="HUD/GameWinPanel/ButtonContainer/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="HUD/GameWinPanel/ButtonContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+[node name="ReturnButton" type="TextureButton" parent="HUD/GameWinPanel/CenterContainer/ButtonContainer"]
+layout_mode = 2
+texture_normal = ExtResource("6_wjtsn")
+
+[connection signal="pressed" from="HUD/GameOverPanel/CenterContainer/ButtonContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="HUD/GameOverPanel/CenterContainer/ButtonContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="HUD/GameWinPanel/CenterContainer/ButtonContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="HUD/GameWinPanel/CenterContainer/ButtonContainer/ReturnButton" to="." method="_on_return_button_pressed"]

@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://d24d6ji3uomxb"]
+
+[ext_resource type="Script" uid="uid://d3ip1pqjjatic" path="res://scripts/game/menu_parallax.gd" id="1_5fexx"]
+[ext_resource type="Texture2D" uid="uid://cg8362rugdo8a" path="res://assets/ui/parallax_menu/sky.png" id="2_qta35"]
+[ext_resource type="Texture2D" uid="uid://bxiph17eub42f" path="res://assets/ui/parallax_menu/ground.png" id="3_d22bi"]
+[ext_resource type="Texture2D" uid="uid://dxw63erox8w1n" path="res://assets/ui/parallax_menu/grass.png" id="4_e7dc6"]
+[ext_resource type="Texture2D" uid="uid://d17bf0t4ij2ep" path="res://assets/ui/parallax_menu/cloud.png" id="5_d75p1"]
+
+[node name="MenuParallax" type="ParallaxBackground"]
+script = ExtResource("1_5fexx")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.2, 1)
+motion_mirroring = Vector2(1275, 0)
+
+[node name="Sky" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(640.25, 361.5)
+scale = Vector2(2.22135, 2.25617)
+texture = ExtResource("2_qta35")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.6, 1)
+motion_mirroring = Vector2(1275, 0)
+
+[node name="Ground" type="Sprite2D" parent="ParallaxLayer2"]
+position = Vector2(639, 363.5)
+scale = Vector2(2.22569, 2.24383)
+texture = ExtResource("3_d22bi")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1275, 0)
+
+[node name="Grass" type="Sprite2D" parent="ParallaxLayer3"]
+position = Vector2(640, 362.5)
+scale = Vector2(2.22222, 2.26235)
+texture = ExtResource("4_e7dc6")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.35, 1)
+motion_mirroring = Vector2(1275, 0)
+
+[node name="Cloud" type="Sprite2D" parent="ParallaxLayer4"]
+position = Vector2(640, 362.5)
+scale = Vector2(2.22222, 2.25)
+texture = ExtResource("5_d75p1")

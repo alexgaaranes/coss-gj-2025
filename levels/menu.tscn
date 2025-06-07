@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://5hdpe16uptb2"]
+[gd_scene load_steps=8 format=3 uid="uid://5hdpe16uptb2"]
 
 [ext_resource type="Script" uid="uid://c580jk435tvls" path="res://scripts/level/menu.gd" id="1_cnlwo"]
+[ext_resource type="Texture2D" uid="uid://bf2g82gxlbhrs" path="res://assets/ui/buttons/start.png" id="2_6nun2"]
+[ext_resource type="Texture2D" uid="uid://c1834i7wtb8bi" path="res://assets/ui/title.png" id="2_gbx6r"]
+[ext_resource type="Script" uid="uid://cnf1sn61h53sb" path="res://scripts/game/title_sprite.gd" id="3_bvm7p"]
+[ext_resource type="Texture2D" uid="uid://w6kmucc6aicl" path="res://assets/ui/buttons/credits_button.png" id="3_tbhb4"]
+[ext_resource type="Texture2D" uid="uid://bmkocp443ptnd" path="res://assets/ui/buttons/exit_button.png" id="4_sq0xk"]
+[ext_resource type="PackedScene" uid="uid://d24d6ji3uomxb" path="res://levels/menu_parallax.tscn" id="7_tbhb4"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -11,30 +17,38 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cnlwo")
 
-[node name="Title_Lbl" type="Label" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
-offset_left = 251.0
-offset_top = 121.0
-offset_right = 1087.0
-offset_bottom = 258.0
-theme_override_font_sizes/font_size = 100
-text = "Sharon's Takeout"
+offset_left = 1.0
+offset_top = 139.0
+offset_right = 1279.0
+offset_bottom = 722.0
 
-[node name="Start_Btn" type="Button" parent="."]
-layout_mode = 0
-offset_left = 512.0
-offset_top = 344.0
-offset_right = 752.0
-offset_bottom = 416.0
-text = "Start"
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
 
-[node name="Quit_Btn" type="Button" parent="."]
-layout_mode = 0
-offset_left = 512.0
-offset_top = 504.0
-offset_right = 747.0
-offset_bottom = 575.0
-text = "Quit"
+[node name="Credits_Btn" type="TextureButton" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_tbhb4")
 
-[connection signal="pressed" from="Start_Btn" to="." method="_on_start_btn_pressed"]
-[connection signal="pressed" from="Quit_Btn" to="." method="_on_quit_btn_pressed"]
+[node name="Start_Btn" type="TextureButton" parent="CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(220, 55)
+layout_mode = 2
+texture_normal = ExtResource("2_6nun2")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Quit_Btn" type="TextureButton" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_sq0xk")
+
+[node name="Title_Sprite" type="Sprite2D" parent="."]
+position = Vector2(645, 242)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_gbx6r")
+script = ExtResource("3_bvm7p")
+
+[node name="MenuParallax" parent="." instance=ExtResource("7_tbhb4")]
+
+[connection signal="pressed" from="CenterContainer/HBoxContainer/Start_Btn" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/Quit_Btn" to="." method="_on_quit_btn_pressed"]
