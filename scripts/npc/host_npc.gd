@@ -80,7 +80,6 @@ func pick_random_behavior():
 		State.WALK:
 			pass
 		State.TURN:
-			print("Facing " + ("Left" if direction == 1 else "Right"))
 			direction *= -1
 			sprite.flip_h = direction < 0
 			

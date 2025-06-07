@@ -7,6 +7,8 @@ extends Node
 var points: int = 0
 var time_left: float = 0.0
 var game_over: bool = false
+var capacity: float = 0.0
+var max_capacity: float = 100.0
 
 
 
@@ -42,11 +44,18 @@ func add_points(amount: int) -> void:
 	if game_over:
 		return
 
-	points = clamp(points + amount, 0, max_points) + 500
+	points = clamp(points + amount, 0, max_points)
 	hud.update_tupperwares(points, max_points, points_per_tupperware)
 
 	if points >= max_points:
 		game_won()
+		
+func add_weight(amount: float) -> void:
+	if game_over:
+		return
+		
+	capacity = clamp(capacity + amount, 0, max_capacity)
+	hud.update_inventory(capacity)
 
 func player_caught() -> void:
 	if game_over:
@@ -84,3 +93,4 @@ func _on_return_button_pressed() -> void:
 	
 func _on_successful_sharon(data: Dictionary) -> void:
 	add_points(data["points"])
+	add_weight(data["weight"])

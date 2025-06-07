@@ -2,6 +2,8 @@ extends Node2D
 
 @export var speed := 200.0
 @export var weight := 1.0
+@export var max_capacity := 100.0
+@export var current_capacity := 1.0
 
 var direction: int = 1  # 1 = right, -1 = left
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
@@ -47,5 +49,6 @@ func _on_is_stealing_food():
 func _on_is_finished_stealing_food():
 	isStealing = false
 
-func add_food():
-	weight += 0.1
+func add_food(capacity):
+	current_capacity += capacity
+	weight = (current_capacity / max_capacity) * 10
