@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sh4775j8wjfl"
-path="res://.godot/imported/host_npc_spritesheet.png-fbcff8f8cdd3a372decb9fdc88fff23e.ctex"
+uid="uid://cketks16dvw6f"
+path="res://.godot/imported/fiesta_background.png-b280c40cd044ef659809474ac93812d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/host_npc_spritesheet.png"
-dest_files=["res://.godot/imported/host_npc_spritesheet.png-fbcff8f8cdd3a372decb9fdc88fff23e.ctex"]
+source_file="res://assets/maps/fiesta/fiesta_background.png"
+dest_files=["res://.godot/imported/fiesta_background.png-b280c40cd044ef659809474ac93812d3.ctex"]
 
 [params]
 
