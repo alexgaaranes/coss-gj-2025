@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxoh4feehd3jv"]
+[gd_scene load_steps=11 format=3 uid="uid://bxoh4feehd3jv"]
 
 [ext_resource type="Script" uid="uid://crn4pk3s2qx4r" path="res://scripts/game/hud.gd" id="1_7qq33"]
 [ext_resource type="Texture2D" uid="uid://ukrd730t4oj8" path="res://assets/tupperware_empty.png" id="1_8ovie"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://clcss2bcwcxel" path="res://assets/ui/hud/bag_gray.png" id="6_1ghly"]
 [ext_resource type="Texture2D" uid="uid://w6kmucc6aicl" path="res://assets/ui/buttons/credits_button.png" id="6_wjtsn"]
 [ext_resource type="Texture2D" uid="uid://b5pbl35772fi6" path="res://assets/ui/hud/bag.png" id="7_ujcqu"]
+[ext_resource type="Texture2D" uid="uid://b3qr3k87vwwxg" path="res://assets/ui/hud/tupperware_gray.png" id="8_8v2yl"]
+[ext_resource type="Texture2D" uid="uid://bkf88lo3d2x3w" path="res://assets/ui/hud/tupperware.png" id="9_x4j3j"]
 
 [node name="GameLogic" type="Control"]
 layout_mode = 3
@@ -21,26 +23,24 @@ texture_half = ExtResource("3_s6cuu")
 texture_full = ExtResource("4_idxpj")
 
 [node name="BagHolder" type="Control" parent="HUD"]
+clip_contents = true
 layout_mode = 3
-anchors_preset = 0
-offset_left = 1200.0
+offset_left = 1160.0
 offset_top = 16.0
 offset_right = 1264.0
-offset_bottom = 80.0
+offset_bottom = 120.0
 
 [node name="TextureRect" type="TextureRect" parent="HUD/BagHolder"]
 layout_mode = 2
-offset_left = -40.0
-offset_right = 64.0
+offset_right = 104.0
 offset_bottom = 104.0
 texture = ExtResource("6_1ghly")
 
 [node name="ClipMask" type="Control" parent="HUD/BagHolder"]
 clip_contents = true
 anchors_preset = 0
-offset_left = -40.0
 offset_top = 104.0
-offset_right = 64.0
+offset_right = 104.0
 offset_bottom = 104.0
 
 [node name="TextureRect" type="TextureRect" parent="HUD/BagHolder/ClipMask"]
@@ -54,6 +54,262 @@ offset_top = -104.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("7_ujcqu")
+
+[node name="TupperRow" type="HBoxContainer" parent="HUD"]
+offset_left = 8.0
+offset_top = 88.0
+offset_right = 544.0
+offset_bottom = 200.0
+
+[node name="Tupper0" type="Control" parent="HUD/TupperRow"]
+clip_contents = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/TupperRow/Tupper0"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -36.0
+offset_right = 32.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_8v2yl")
+
+[node name="ClipMask" type="Control" parent="HUD/TupperRow/Tupper0"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 40.0
+offset_right = 44.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/TupperRow/Tupper0/ClipMask"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -77.0
+offset_right = -12.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("9_x4j3j")
+
+[node name="Tupper1" type="Control" parent="HUD/TupperRow"]
+clip_contents = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/TupperRow/Tupper1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -36.0
+offset_right = 32.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_8v2yl")
+
+[node name="ClipMask" type="Control" parent="HUD/TupperRow/Tupper1"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 40.0
+offset_right = 44.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/TupperRow/Tupper1/ClipMask"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -77.0
+offset_right = -12.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("9_x4j3j")
+
+[node name="Tupper2" type="Control" parent="HUD/TupperRow"]
+clip_contents = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/TupperRow/Tupper2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -36.0
+offset_right = 32.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_8v2yl")
+
+[node name="ClipMask" type="Control" parent="HUD/TupperRow/Tupper2"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 40.0
+offset_right = 44.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/TupperRow/Tupper2/ClipMask"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -77.0
+offset_right = -12.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("9_x4j3j")
+
+[node name="Tupper3" type="Control" parent="HUD/TupperRow"]
+clip_contents = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/TupperRow/Tupper3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -36.0
+offset_right = 32.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_8v2yl")
+
+[node name="ClipMask" type="Control" parent="HUD/TupperRow/Tupper3"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 40.0
+offset_right = 44.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/TupperRow/Tupper3/ClipMask"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -77.0
+offset_right = -12.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("9_x4j3j")
+
+[node name="Tupper4" type="Control" parent="HUD/TupperRow"]
+clip_contents = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/TupperRow/Tupper4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -36.0
+offset_right = 32.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_8v2yl")
+
+[node name="ClipMask" type="Control" parent="HUD/TupperRow/Tupper4"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 40.0
+offset_right = 44.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/TupperRow/Tupper4/ClipMask"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -77.0
+offset_right = -12.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("9_x4j3j")
 
 [node name="TupperContainer" type="HBoxContainer" parent="HUD"]
 offset_right = 454.0
