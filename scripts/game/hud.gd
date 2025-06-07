@@ -40,7 +40,6 @@ func update_tupperwares(points: int, max_points: int, points_per: int) -> void:
 		
 		var points_percentage: float = float(points_each) / float(points_per)
 		
-		
 		var fill_height = points_percentage * clip_max_height
 		clip_mask.size = Vector2(clip_mask.size.x, fill_height)
 		clip_mask.position.y = clip_max_height - fill_height + 15

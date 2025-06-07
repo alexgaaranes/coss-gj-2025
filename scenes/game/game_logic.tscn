@@ -56,10 +56,8 @@ grow_vertical = 0
 texture = ExtResource("7_ujcqu")
 
 [node name="TupperRow" type="HBoxContainer" parent="HUD"]
-offset_left = 8.0
-offset_top = 88.0
-offset_right = 544.0
-offset_bottom = 200.0
+offset_right = 536.0
+offset_bottom = 112.0
 
 [node name="Tupper0" type="Control" parent="HUD/TupperRow"]
 clip_contents = true
@@ -310,35 +308,6 @@ offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("9_x4j3j")
-
-[node name="TupperContainer" type="HBoxContainer" parent="HUD"]
-offset_right = 454.0
-offset_bottom = 91.0
-
-[node name="TupperOne" type="Sprite2D" parent="HUD/TupperContainer"]
-position = Vector2(43, 44)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("1_8ovie")
-
-[node name="TupperTwo" type="Sprite2D" parent="HUD/TupperContainer"]
-position = Vector2(135, 44)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("1_8ovie")
-
-[node name="TupperThree" type="Sprite2D" parent="HUD/TupperContainer"]
-position = Vector2(227, 44)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("1_8ovie")
-
-[node name="TupperFour" type="Sprite2D" parent="HUD/TupperContainer"]
-position = Vector2(319, 44)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("1_8ovie")
-
-[node name="TupperFive" type="Sprite2D" parent="HUD/TupperContainer"]
-position = Vector2(411, 44)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("1_8ovie")
 
 [node name="Timer" type="Label" parent="HUD"]
 anchors_preset = 5
