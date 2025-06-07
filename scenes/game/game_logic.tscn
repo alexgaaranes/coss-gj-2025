@@ -17,6 +17,13 @@ texture_empty = ExtResource("1_8ovie")
 texture_half = ExtResource("3_s6cuu")
 texture_full = ExtResource("4_idxpj")
 
+[node name="FoodOverlapHint" type="Label" parent="HUD"]
+offset_left = 818.0
+offset_top = 40.0
+offset_right = 991.0
+offset_bottom = 63.0
+text = "Press <Space> to Loot"
+
 [node name="TupperContainer" type="HBoxContainer" parent="HUD"]
 offset_right = 454.0
 offset_bottom = 91.0

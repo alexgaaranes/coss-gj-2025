@@ -13,8 +13,6 @@ func _ready():
 	GlobalSignals.connect("has_failed_stealing_food", self._on_has_failed_stealing_food)
 	GlobalSignals.connect("is_stealing_food", self._on_is_stealing_food)
 	GlobalSignals.connect("is_finished_stealing_food", self._on_is_finished_stealing_food)
-	
-	
 	pass
 
 func _physics_process(delta):
@@ -48,4 +46,4 @@ func _on_is_finished_stealing_food():
 	isStealing = false
 
 func add_food():
-	weight += 0.1
+	weight += 0.05

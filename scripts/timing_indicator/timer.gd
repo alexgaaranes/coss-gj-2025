@@ -60,6 +60,7 @@ func _input(event):
 			print("Skill Check Successful!")
 			add_food_weight()
 			input_feedback(true)
+			GlobalSignals.emit_signal("is_finished_stealing_food")
 		else:
 			print("Skill Check Failed")
 			input_feedback(false)
