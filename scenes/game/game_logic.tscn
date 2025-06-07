@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxoh4feehd3jv"]
+[gd_scene load_steps=6 format=3 uid="uid://tqb8li644xjn"]
 
-[ext_resource type="Script" uid="uid://crn4pk3s2qx4r" path="res://scripts/game/hud.gd" id="1_7qq33"]
+[ext_resource type="Script" path="res://scripts/game/hud.gd" id="1_7qq33"]
 [ext_resource type="Texture2D" uid="uid://ukrd730t4oj8" path="res://assets/tupperware_empty.png" id="1_8ovie"]
 [ext_resource type="Script" uid="uid://bcsua7gy1o8wy" path="res://scripts/game/game_logic.gd" id="1_idxpj"]
 [ext_resource type="Texture2D" uid="uid://dkw7328yhi2b2" path="res://assets/tupperware_half.png" id="3_s6cuu"]

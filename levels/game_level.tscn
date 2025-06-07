@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bhjygflt3q81y" path="res://scenes/maps/fiesta.tscn" id="1_sklrn"]
 [ext_resource type="PackedScene" uid="uid://6er8nk8tyg17" path="res://scenes/player/player.tscn" id="2_d65c1"]
 [ext_resource type="PackedScene" uid="uid://djbg3adro7lij" path="res://scenes/npc/npc_followpath2d.tscn" id="4_n0b0m"]
-[ext_resource type="PackedScene" uid="uid://bxoh4feehd3jv" path="res://scenes/game/game_logic.tscn" id="5_2i5ty"]
+[ext_resource type="PackedScene" uid="uid://tqb8li644xjn" path="res://scenes/game/game_logic.tscn" id="5_2i5ty"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2i5ty"]
 size = Vector2(15.5556, 20)
@@ -37,7 +37,6 @@ position = Vector2(-0.138885, -23.6111)
 shape = SubResource("RectangleShape2D_2i5ty")
 
 [node name="HostNpc" parent="." instance=ExtResource("4_n0b0m")]
-visible = false
 position = Vector2(1350, 653)
 scale = Vector2(8, 6.504)
 
