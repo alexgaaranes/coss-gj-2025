@@ -3,8 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://cha2wnaqrkf7s" path="res://scenes/food/food.tscn" id="1_d65c1"]
 [ext_resource type="PackedScene" uid="uid://bhjygflt3q81y" path="res://scenes/maps/fiesta.tscn" id="1_sklrn"]
 [ext_resource type="PackedScene" uid="uid://6er8nk8tyg17" path="res://scenes/player/player.tscn" id="2_d65c1"]
-[ext_resource type="PackedScene" uid="uid://kxmh1ixtccin" path="res://scenes/npc/host_npc.tscn" id="4_n0b0m"]
 [ext_resource type="PackedScene" uid="uid://djbg3adro7lij" path="res://scenes/npc/npc_followpath2d.tscn" id="4_n0b0m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2i5ty"]
+size = Vector2(15.5556, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0b0m"]
 size = Vector2(128, 384)
@@ -23,18 +25,26 @@ position = Vector2(168, 360)
 
 [node name="Map" parent="." instance=ExtResource("1_sklrn")]
 
-[node name="Player" parent="Map" instance=ExtResource("2_d65c1")]
+[node name="Player" parent="Map" groups=["player_dialogue_detection_group"] instance=ExtResource("2_d65c1")]
 position = Vector2(641, 658)
 scale = Vector2(7.2, 7.2)
 
+[node name="Area2D2" type="Area2D" parent="Map/Player" groups=["player_dialogue_detection_group"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Player/Area2D2"]
+position = Vector2(-0.138885, -23.6111)
+shape = SubResource("RectangleShape2D_2i5ty")
+
 [node name="HostNpc" parent="." instance=ExtResource("4_n0b0m")]
+visible = false
 position = Vector2(1350, 653)
 scale = Vector2(8, 6.504)
-SPEED = 200.0
 
-[node name="Area2D2" type="Area2D" parent="Fiesta/CharacterBody2D" groups=["player_dialogue_detection_group"]]
+[node name="Fiesta_CharacterBody2D#Area2D2" type="Area2D" parent="." groups=["player_dialogue_detection_group"]]
+visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Fiesta/CharacterBody2D/Area2D2"]
+[node name="Fiesta_CharacterBody2D_Area2D2#CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(64, 192)
 shape = SubResource("RectangleShape2D_n0b0m")
 
