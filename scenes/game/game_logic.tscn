@@ -19,6 +19,7 @@ script = ExtResource("1_7qq33")
 [node name="BagHolder" type="Control" parent="HUD"]
 clip_contents = true
 layout_mode = 3
+anchors_preset = 0
 offset_left = 1160.0
 offset_top = 16.0
 offset_right = 1264.0
@@ -48,6 +49,13 @@ offset_top = -104.0
 grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("7_ujcqu")
+
+[node name="FoodOverlapHint" type="Label" parent="HUD"]
+offset_left = 818.0
+offset_top = 40.0
+offset_right = 991.0
+offset_bottom = 63.0
+text = "Press <Space> to Loot"
 
 [node name="TupperRow" type="HBoxContainer" parent="HUD"]
 offset_right = 536.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://6er8nk8tyg17"]
+[gd_scene load_steps=21 format=3 uid="uid://6er8nk8tyg17"]
 
 [ext_resource type="Script" uid="uid://2ftcmcw1rjxc" path="res://scripts/player/player.gd" id="1_8afob"]
 [ext_resource type="Texture2D" uid="uid://cp0ad2ju4rtrk" path="res://assets/player_sprites/idle/Character1F_3_idle_0.png" id="2_kvlxm"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dc3r7x7a3tsog" path="res://assets/player_sprites/walk/Character1F_3_walk_5.png" id="15_iqsei"]
 [ext_resource type="Texture2D" uid="uid://c5fnmu7dfoymn" path="res://assets/player_sprites/walk/Character1F_3_walk_6.png" id="16_tffgl"]
 [ext_resource type="Texture2D" uid="uid://c3yit2k7pfppr" path="res://assets/player_sprites/walk/Character1F_3_walk_7.png" id="17_pk8ii"]
+[ext_resource type="Script" uid="uid://d2y0fbodq05do" path="res://scenes/player/camera_2d.gd" id="18_uf5tr"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kvlxm"]
 animations = [{
@@ -99,4 +100,7 @@ position = Vector2(0, -23)
 shape = SubResource("CapsuleShape2D_dovo2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -48)
 offset = Vector2(0, -350)
+position_smoothing_enabled = true
+script = ExtResource("18_uf5tr")

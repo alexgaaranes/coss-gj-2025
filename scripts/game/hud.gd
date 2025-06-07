@@ -13,6 +13,7 @@ extends CanvasLayer
 @onready var menu_button_over := $GameOverPanel/ButtonContainer/ReturnButton
 @onready var restart_button_win := $GameWinPanel/ButtonContainer/RestartButton
 @onready var menu_button_win := $GameWinPanel/ButtonContainer/ReturnButton
+@onready var food_overlap_hint_label := $FoodOverlapHint
 
 @export var Max_Capacity := 100.0
 
@@ -20,6 +21,27 @@ var clip_max_height = 80
 var clip_initial_height = 0
 
 var bag_max_height = 104
+
+# Food overlap signal vars for hints
+var isOverlappingFood: bool = false
+var isStealing : bool = false
+
+func _ready():
+	GlobalSignals.connect("is_overlapping_food", self._on_overlap_food_show_hint)
+	GlobalSignals.connect("is_not_overlapping_food", self._on_exit_overlap_food)
+	GlobalSignals.connect("is_stealing_food", self._on_stealing_food)
+	GlobalSignals.connect("is_finished_stealing_food", self._on_exit_stealing)
+	GlobalSignals.connect("has_failed_stealing_food", self._on_exit_stealing)
+
+func _process(delta):
+	if isOverlappingFood:
+		if isStealing:
+			food_overlap_hint_label.text = "Press <ESC> to Stop"
+		else:
+			food_overlap_hint_label.text = "Press <Space> to Loot"
+		food_overlap_hint_label.visible = true
+	else:
+		food_overlap_hint_label.visible = false
 
 func update_timer_label(time_left: float) -> void:
 	var minutes = int(time_left) / 60
@@ -54,6 +76,18 @@ func update_inventory(weight: float):
 	clip_mask.size = Vector2(clip_mask.size.x, fill_height)
 	clip_mask.position.y = clip_max_height - fill_height + 25
 	pass
+
+func _on_overlap_food_show_hint():
+	isOverlappingFood = true
+
+func _on_exit_overlap_food():
+	isOverlappingFood = false
+
+func _on_stealing_food():
+	isStealing = true
+
+func _on_exit_stealing():
+	isStealing = false
 
 func show_game_over() -> void:
 	game_over_panel.visible = true

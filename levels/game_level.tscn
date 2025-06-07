@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://41dwkup4ipxm"]
+[gd_scene load_steps=11 format=3 uid="uid://41dwkup4ipxm"]
 
 [ext_resource type="PackedScene" uid="uid://cha2wnaqrkf7s" path="res://scenes/food/food.tscn" id="1_d65c1"]
 [ext_resource type="PackedScene" uid="uid://bhjygflt3q81y" path="res://scenes/maps/fiesta.tscn" id="1_sklrn"]
+[ext_resource type="PackedScene" uid="uid://bf4s1yn03bevd" path="res://scenes/audio/sfx_handler.tscn" id="1_wtvao"]
 [ext_resource type="PackedScene" uid="uid://6er8nk8tyg17" path="res://scenes/player/player.tscn" id="2_d65c1"]
 [ext_resource type="PackedScene" uid="uid://djbg3adro7lij" path="res://scenes/npc/npc_followpath2d.tscn" id="4_n0b0m"]
 [ext_resource type="PackedScene" uid="uid://bxoh4feehd3jv" path="res://scenes/game/game_logic.tscn" id="5_2i5ty"]
@@ -13,8 +14,17 @@ size = Vector2(15.5556, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0b0m"]
 size = Vector2(128, 384)
 
+[sub_resource type="Environment" id="Environment_wtvao"]
+tonemap_mode = 3
+glow_enabled = true
+glow_intensity = 0.3
+glow_bloom = 1.0
+glow_hdr_threshold = 1.5
+
 [node name="GameLevel" type="Node2D"]
 process_mode = 1
+
+[node name="SfxHandler" parent="." instance=ExtResource("1_wtvao")]
 
 [node name="Label" type="Label" parent="."]
 offset_left = 576.0
@@ -60,3 +70,6 @@ position = Vector2(48, 416)
 [node name="HostNpc2" parent="." instance=ExtResource("6_wtvao")]
 position = Vector2(952, 656)
 scale = Vector2(7, 7)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wtvao")
