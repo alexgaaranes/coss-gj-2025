@@ -5,6 +5,8 @@ extends CanvasLayer
 @onready var zone = $BarContainer/Zone
 @onready var bar_bg = $BarContainer/Bar
 
+signal has_failed_stealing_food
+
 var tween: Tween
 var feedback_tween: Tween
 var is_active = false
@@ -56,11 +58,14 @@ func _input(event):
 			tween.kill()
 		if skill_check():
 			print("Skill Check Successful!")
+			add_food_weight()
 			input_feedback(true)
 		else:
 			print("Skill Check Failed")
 			input_feedback(false)
+			GlobalSignals.emit_signal("has_failed_stealing_food")
 		is_active = false
+		
 
 	elif event.is_action_pressed("ui_cancel"):
 		print("Skill Check Cancelled")
@@ -81,6 +86,9 @@ func _on_feedback_finished():
 	print("Feedback animation finished.")
 	hide()
 	bar.scale = Vector2(1, 1) # reset scale just in case
+	
+	get_parent().queue_free()
+	get_tree().root.get_node("GameLevel").get_node("Food").set_overlapping(true)
 
 func _cancel_skill_check():
 	if tween:
@@ -90,3 +98,7 @@ func _cancel_skill_check():
 
 	bar.scale = Vector2(1, 1)
 	hide()
+
+func add_food_weight():
+	var player = get_tree().root.get_node("GameLevel").get_node("Map").get_node('Player')
+	player.add_food()
