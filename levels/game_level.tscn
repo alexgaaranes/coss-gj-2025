@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://41dwkup4ipxm"]
+[gd_scene load_steps=8 format=3 uid="uid://41dwkup4ipxm"]
 
 [ext_resource type="PackedScene" uid="uid://cha2wnaqrkf7s" path="res://scenes/food/food.tscn" id="1_d65c1"]
 [ext_resource type="PackedScene" uid="uid://bhjygflt3q81y" path="res://scenes/maps/fiesta.tscn" id="1_sklrn"]
 [ext_resource type="PackedScene" uid="uid://6er8nk8tyg17" path="res://scenes/player/player.tscn" id="2_d65c1"]
 [ext_resource type="PackedScene" uid="uid://djbg3adro7lij" path="res://scenes/npc/npc_followpath2d.tscn" id="4_n0b0m"]
+[ext_resource type="PackedScene" uid="uid://bxoh4feehd3jv" path="res://scenes/game/game_logic.tscn" id="5_2i5ty"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2i5ty"]
 size = Vector2(15.5556, 20)
@@ -56,3 +57,5 @@ position = Vector2(504, 416)
 
 [node name="npc_followpath2d3" parent="." instance=ExtResource("4_n0b0m")]
 position = Vector2(48, 416)
+
+[node name="GameLogic" parent="." instance=ExtResource("5_2i5ty")]
