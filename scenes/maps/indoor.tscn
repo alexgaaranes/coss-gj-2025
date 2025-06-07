@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://8mw1vt1fdd0j"]
+
+[ext_resource type="PackedScene" uid="uid://dbkdj4n13kvps" path="res://scenes/maps/indoor_parallax.tscn" id="1_ulsyi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bamm5"]
+size = Vector2(2560, 96)
+
+[node name="Indoor" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1280, 672)
+shape = SubResource("RectangleShape2D_bamm5")
+
+[node name="IndoorParallax" parent="." instance=ExtResource("1_ulsyi")]

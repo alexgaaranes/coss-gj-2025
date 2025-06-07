@@ -28,9 +28,9 @@ func _ready() -> void:
 	var npc2 = npc1_scene.instantiate()
 	var npc3 = npc1_scene.instantiate()
 	
-	npc1.position = Vector2(-100, 350)
-	npc2.position = Vector2(500, 350)
-	npc3.position = Vector2(1200, 350)
+	npc1.position = Vector2(-100, 375)
+	npc2.position = Vector2(500, 375)
+	npc3.position = Vector2(1200, 375)
 	
 	# get the available sprite frames
 	var available_sprite_frames: Array[SpriteFrames] = [

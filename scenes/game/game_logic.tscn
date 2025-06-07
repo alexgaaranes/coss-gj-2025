@@ -1,12 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxoh4feehd3jv"]
+[gd_scene load_steps=11 format=3 uid="uid://bxoh4feehd3jv"]
 
 [ext_resource type="Script" uid="uid://crn4pk3s2qx4r" path="res://scripts/game/hud.gd" id="1_7qq33"]
 [ext_resource type="Script" uid="uid://bcsua7gy1o8wy" path="res://scripts/game/game_logic.gd" id="1_idxpj"]
 [ext_resource type="Texture2D" uid="uid://clcss2bcwcxel" path="res://assets/ui/hud/bag_gray.png" id="6_1ghly"]
-[ext_resource type="Texture2D" uid="uid://w6kmucc6aicl" path="res://assets/ui/buttons/credits_button.png" id="6_wjtsn"]
+[ext_resource type="Texture2D" uid="uid://b2ioahn1bdbj3" path="res://assets/ui/hud/WIN.png" id="7_8v2yl"]
 [ext_resource type="Texture2D" uid="uid://b5pbl35772fi6" path="res://assets/ui/hud/bag.png" id="7_ujcqu"]
 [ext_resource type="Texture2D" uid="uid://7h4706x4ol8f" path="res://assets/ui/hud/lunchbox_gray.png" id="8_8v2yl"]
+[ext_resource type="Texture2D" uid="uid://y4utamh5y0cd" path="res://assets/ui/buttons/menu_button.png" id="8_x4j3j"]
+[ext_resource type="Texture2D" uid="uid://djdhkw1rgnn38" path="res://assets/ui/buttons/replay_button.png" id="9_q3bp0"]
 [ext_resource type="Texture2D" uid="uid://c3fp6lyefmsb5" path="res://assets/ui/hud/lunchbox.png" id="9_x4j3j"]
+[ext_resource type="Texture2D" uid="uid://bgnro4lsmn2jk" path="res://assets/ui/hud/LOSE.png" id="10_niv2m"]
 
 [node name="GameLogic" type="Control"]
 layout_mode = 3
@@ -323,7 +326,6 @@ grow_horizontal = 2
 horizontal_alignment = 1
 
 [node name="GameOverPanel" type="Panel" parent="HUD"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -339,19 +341,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ButtonContainer" type="HBoxContainer" parent="HUD/GameOverPanel/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/GameOverPanel/CenterContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/GameOverPanel/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 300)
+layout_mode = 2
+texture = ExtResource("10_niv2m")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ButtonContainer" type="HBoxContainer" parent="HUD/GameOverPanel/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
 alignment = 1
 
-[node name="RestartButton" type="TextureButton" parent="HUD/GameOverPanel/CenterContainer/ButtonContainer"]
+[node name="RestartButton" type="TextureButton" parent="HUD/GameOverPanel/CenterContainer/VBoxContainer/ButtonContainer"]
 process_mode = 3
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-texture_normal = ExtResource("6_wjtsn")
+texture_normal = ExtResource("8_x4j3j")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="ReturnButton" type="TextureButton" parent="HUD/GameOverPanel/CenterContainer/ButtonContainer"]
+[node name="ReturnButton" type="TextureButton" parent="HUD/GameOverPanel/CenterContainer/VBoxContainer/ButtonContainer"]
 process_mode = 3
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-texture_normal = ExtResource("6_wjtsn")
+texture_normal = ExtResource("9_q3bp0")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="GameWinPanel" type="Panel" parent="HUD"]
 visible = false
@@ -369,20 +388,38 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ButtonContainer" type="HBoxContainer" parent="HUD/GameWinPanel/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/GameWinPanel/CenterContainer"]
 layout_mode = 2
 
-[node name="RestartButton" type="TextureButton" parent="HUD/GameWinPanel/CenterContainer/ButtonContainer"]
+[node name="TextureRect" type="TextureRect" parent="HUD/GameWinPanel/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 300)
+layout_mode = 2
+texture = ExtResource("7_8v2yl")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ButtonContainer" type="HBoxContainer" parent="HUD/GameWinPanel/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 2
+alignment = 1
+
+[node name="RestartButton" type="TextureButton" parent="HUD/GameWinPanel/CenterContainer/VBoxContainer/ButtonContainer"]
 process_mode = 3
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-texture_normal = ExtResource("6_wjtsn")
+texture_normal = ExtResource("8_x4j3j")
+ignore_texture_size = true
+stretch_mode = 5
 
-[node name="ReturnButton" type="TextureButton" parent="HUD/GameWinPanel/CenterContainer/ButtonContainer"]
+[node name="ReturnButton" type="TextureButton" parent="HUD/GameWinPanel/CenterContainer/VBoxContainer/ButtonContainer"]
 process_mode = 3
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-texture_normal = ExtResource("6_wjtsn")
+texture_normal = ExtResource("9_q3bp0")
+ignore_texture_size = true
+stretch_mode = 5
 
-[connection signal="pressed" from="HUD/GameOverPanel/CenterContainer/ButtonContainer/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="HUD/GameOverPanel/CenterContainer/ButtonContainer/ReturnButton" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="HUD/GameWinPanel/CenterContainer/ButtonContainer/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="pressed" from="HUD/GameWinPanel/CenterContainer/ButtonContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="HUD/GameOverPanel/CenterContainer/VBoxContainer/ButtonContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="HUD/GameOverPanel/CenterContainer/VBoxContainer/ButtonContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="HUD/GameWinPanel/CenterContainer/VBoxContainer/ButtonContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="HUD/GameWinPanel/CenterContainer/VBoxContainer/ButtonContainer/ReturnButton" to="." method="_on_return_button_pressed"]

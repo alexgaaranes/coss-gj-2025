@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dinq21fateg3x"
-path="res://.godot/imported/fiesta_ground.png-f5f259bbfa84ef3794bca7cdcbca6f30.ctex"
+uid="uid://bf4qitb8oleto"
+path="res://.godot/imported/birthday_ground.png-f7bb3ecb70e2b12adcc0d3dcf26f2f4a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/maps/fiesta/fiesta_ground.png"
-dest_files=["res://.godot/imported/fiesta_ground.png-f5f259bbfa84ef3794bca7cdcbca6f30.ctex"]
+source_file="res://assets/maps/birthday/birthday_ground.png"
+dest_files=["res://.godot/imported/birthday_ground.png-f7bb3ecb70e2b12adcc0d3dcf26f2f4a.ctex"]
 
 [params]
 

@@ -1,3 +1,16 @@
-[gd_scene format=3 uid="uid://c5w8m2kmyekxh"]
+[gd_scene load_steps=3 format=3 uid="uid://c5w8m2kmyekxh"]
+
+[ext_resource type="PackedScene" uid="uid://mhynfm7ul0n2" path="res://scenes/maps/birthday_parallax.tscn" id="1_073o6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttowe"]
+size = Vector2(2560, 96)
 
 [node name="Birthday" type="Node2D"]
+
+[node name="BirthdayParallax" parent="." instance=ExtResource("1_073o6")]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1280, 672)
+shape = SubResource("RectangleShape2D_ttowe")

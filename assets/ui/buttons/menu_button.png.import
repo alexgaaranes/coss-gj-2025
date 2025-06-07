@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dinq21fateg3x"
-path="res://.godot/imported/fiesta_ground.png-f5f259bbfa84ef3794bca7cdcbca6f30.ctex"
+uid="uid://y4utamh5y0cd"
+path="res://.godot/imported/menu_button.png-305499344f38d3c2510018892ee37aa2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/maps/fiesta/fiesta_ground.png"
-dest_files=["res://.godot/imported/fiesta_ground.png-f5f259bbfa84ef3794bca7cdcbca6f30.ctex"]
+source_file="res://assets/ui/buttons/menu_button.png"
+dest_files=["res://.godot/imported/menu_button.png-305499344f38d3c2510018892ee37aa2.ctex"]
 
 [params]
 

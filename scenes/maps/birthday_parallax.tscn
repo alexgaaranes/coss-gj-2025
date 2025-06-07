@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://mhynfm7ul0n2"]
+
+[ext_resource type="Script" uid="uid://cq0ktvbjmm6du" path="res://scripts/maps/birthday_parallax.gd" id="1_a5vsh"]
+[ext_resource type="Texture2D" uid="uid://2gji367yxrt2" path="res://assets/maps/birthday/birthday_background.png" id="1_dftqn"]
+[ext_resource type="Texture2D" uid="uid://bf4qitb8oleto" path="res://assets/maps/birthday/birthday_ground.png" id="2_g2153"]
+
+[node name="BirthdayParallax" type="ParallaxBackground"]
+script = ExtResource("1_a5vsh")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.2, 1)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="BirthdayBackground" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(639, 352.5)
+scale = Vector2(0.333854, 0.650926)
+texture = ExtResource("1_dftqn")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.2, 1)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="BirthdayBackground" type="Sprite2D" parent="ParallaxLayer3"]
+position = Vector2(640, 328)
+scale = Vector2(0.333333, 0.725926)
+texture = ExtResource("2_g2153")

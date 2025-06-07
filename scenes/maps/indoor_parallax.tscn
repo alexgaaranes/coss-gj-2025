@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbkdj4n13kvps"]
+
+[ext_resource type="Texture2D" uid="uid://kweuowfhn78m" path="res://assets/maps/interior/interior_background.png" id="1_dbfjy"]
+[ext_resource type="Texture2D" uid="uid://dmvoi3w4wc54n" path="res://assets/maps/interior/interior_ground.png" id="2_dbfjy"]
+
+[node name="IndoorParallax" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.2, 1)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="InteriorBackground" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(639, 352.5)
+scale = Vector2(0.333854, 0.650926)
+texture = ExtResource("1_dbfjy")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.2, 1)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="InteriorFloor" type="Sprite2D" parent="ParallaxLayer3"]
+position = Vector2(640, 328)
+scale = Vector2(0.333333, 0.725926)
+texture = ExtResource("2_dbfjy")

@@ -38,7 +38,7 @@ position = Vector2(168, 360)
 [node name="Map" parent="." instance=ExtResource("1_sklrn")]
 
 [node name="Player" parent="Map" groups=["player_dialogue_detection_group"] instance=ExtResource("2_d65c1")]
-position = Vector2(641, 658)
+position = Vector2(642, 673)
 scale = Vector2(7.2, 7.2)
 
 [node name="Area2D2" type="Area2D" parent="Map/Player" groups=["player_dialogue_detection_group"]]
@@ -59,7 +59,7 @@ shape = SubResource("RectangleShape2D_n0b0m")
 [node name="GameLogic" parent="." instance=ExtResource("5_2i5ty")]
 
 [node name="HostNpc2" parent="." instance=ExtResource("6_wtvao")]
-position = Vector2(952, 656)
+position = Vector2(957, 673)
 scale = Vector2(7, 7)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
