@@ -48,4 +48,4 @@ func _on_is_finished_stealing_food():
 	isStealing = false
 
 func add_food():
-	weight += 0.2
+	weight += 0.1
