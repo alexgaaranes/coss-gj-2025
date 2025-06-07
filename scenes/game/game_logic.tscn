@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxoh4feehd3jv"]
+[gd_scene load_steps=9 format=3 uid="uid://bxoh4feehd3jv"]
 
 [ext_resource type="Script" uid="uid://crn4pk3s2qx4r" path="res://scripts/game/hud.gd" id="1_7qq33"]
 [ext_resource type="Texture2D" uid="uid://ukrd730t4oj8" path="res://assets/tupperware_empty.png" id="1_8ovie"]
 [ext_resource type="Script" uid="uid://bcsua7gy1o8wy" path="res://scripts/game/game_logic.gd" id="1_idxpj"]
 [ext_resource type="Texture2D" uid="uid://dkw7328yhi2b2" path="res://assets/tupperware_half.png" id="3_s6cuu"]
 [ext_resource type="Texture2D" uid="uid://dx8vug7mtmax4" path="res://assets/tupperware_full.png" id="4_idxpj"]
+[ext_resource type="Texture2D" uid="uid://clcss2bcwcxel" path="res://assets/ui/hud/bag_gray.png" id="6_1ghly"]
 [ext_resource type="Texture2D" uid="uid://w6kmucc6aicl" path="res://assets/ui/buttons/credits_button.png" id="6_wjtsn"]
+[ext_resource type="Texture2D" uid="uid://b5pbl35772fi6" path="res://assets/ui/hud/bag.png" id="7_ujcqu"]
 
 [node name="GameLogic" type="Control"]
 layout_mode = 3
@@ -17,6 +19,41 @@ script = ExtResource("1_7qq33")
 texture_empty = ExtResource("1_8ovie")
 texture_half = ExtResource("3_s6cuu")
 texture_full = ExtResource("4_idxpj")
+
+[node name="BagHolder" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1200.0
+offset_top = 16.0
+offset_right = 1264.0
+offset_bottom = 80.0
+
+[node name="TextureRect" type="TextureRect" parent="HUD/BagHolder"]
+layout_mode = 2
+offset_left = -40.0
+offset_right = 64.0
+offset_bottom = 104.0
+texture = ExtResource("6_1ghly")
+
+[node name="ClipMask" type="Control" parent="HUD/BagHolder"]
+clip_contents = true
+anchors_preset = 0
+offset_left = -40.0
+offset_top = 104.0
+offset_right = 64.0
+offset_bottom = 104.0
+
+[node name="TextureRect" type="TextureRect" parent="HUD/BagHolder/ClipMask"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -104.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("7_ujcqu")
 
 [node name="TupperContainer" type="HBoxContainer" parent="HUD"]
 offset_right = 454.0
@@ -59,6 +96,7 @@ grow_horizontal = 2
 horizontal_alignment = 1
 
 [node name="GameOverPanel" type="Panel" parent="HUD"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -89,6 +127,7 @@ layout_mode = 2
 texture_normal = ExtResource("6_wjtsn")
 
 [node name="GameWinPanel" type="Panel" parent="HUD"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

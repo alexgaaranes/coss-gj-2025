@@ -23,6 +23,7 @@ func update_timer_label(time_left: float) -> void:
 	timer_label.text = "%02d:%02d" % [minutes, seconds]
 
 func update_tupperwares(points: int, max_points: int, points_per: int) -> void:
+	print(points)
 	points = clamp(points, 0, max_points)
 	var full_count = float(points) / points_per
 

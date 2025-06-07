@@ -2,7 +2,7 @@ extends Node
 
 @export var max_points := 5000 #TODO: placeholder values only
 @export var points_per_tupperware := 1000 #TODO: placeholder values only
-@export var timer_countdown := 2 #TODO: replace this with actual time limit, this is for testing only
+@export var timer_countdown := 100 #TODO: replace this with actual time limit, this is for testing only
 
 var points: int = 0
 var time_left: float = 0.0
