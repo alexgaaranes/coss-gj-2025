@@ -8,3 +8,7 @@ signal is_finished_stealing_food
 
 signal is_overlapping_food
 signal is_not_overlapping_food
+
+# Global Audio Signals
+signal play_sound
+signal play_step

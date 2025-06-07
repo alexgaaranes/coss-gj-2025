@@ -20,9 +20,11 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_left"):
 		velocity.x -= speed / weight
 		sprite.flip_h = true
+		GlobalSignals.emit_signal("play_step")
 	if Input.is_action_pressed("move_right"):
 		velocity.x += speed / weight
 		sprite.flip_h = false
+		GlobalSignals.emit_signal("play_step")
 		
 		
 

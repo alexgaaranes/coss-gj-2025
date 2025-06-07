@@ -16,9 +16,11 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_released("interact_food") and is_overlapping:
 		spawn_timer()
+		GlobalSignals.emit_signal("play_sound", "InteractFood")
 		GlobalSignals.emit_signal("is_stealing_food")
 	if Input.is_action_just_released("stop_steal") and is_stealing:
 		del_timer()
+		GlobalSignals.emit_signal("play_sound", "InteractFood")
 		GlobalSignals.emit_signal("has_failed_stealing_food")
 		is_overlapping = true	# only for this 
 
