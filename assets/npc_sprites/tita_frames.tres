@@ -1,6 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=19 format=3 uid="uid://vcpx1s40h3bu"]
+[gd_resource type="SpriteFrames" load_steps=27 format=3 uid="uid://vcpx1s40h3bu"]
 
 [ext_resource type="Texture2D" uid="uid://bv28kc7j4ofkb" path="res://assets/npc_sprites/TitaIdle.png" id="1_y2hg2"]
+[ext_resource type="Texture2D" uid="uid://c2lurgrhqque4" path="res://assets/npc_sprites/TitaTsismis.png" id="2_618bs"]
 [ext_resource type="Texture2D" uid="uid://bsij1ta8mab1v" path="res://assets/npc_sprites/TitaWalk.png" id="2_pcunn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_618bs"]
@@ -34,6 +35,34 @@ region = Rect2(2304, 0, 384, 768)
 [sub_resource type="AtlasTexture" id="AtlasTexture_lpf3a"]
 atlas = ExtResource("1_y2hg2")
 region = Rect2(2688, 0, 384, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsceo"]
+atlas = ExtResource("2_618bs")
+region = Rect2(0, 0, 384, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n84io"]
+atlas = ExtResource("2_618bs")
+region = Rect2(384, 0, 384, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8rij"]
+atlas = ExtResource("2_618bs")
+region = Rect2(768, 0, 384, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi63f"]
+atlas = ExtResource("2_618bs")
+region = Rect2(1152, 0, 384, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5myo"]
+atlas = ExtResource("2_618bs")
+region = Rect2(1536, 0, 384, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkn64"]
+atlas = ExtResource("2_618bs")
+region = Rect2(1920, 0, 384, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tndks"]
+atlas = ExtResource("2_618bs")
+region = Rect2(2304, 0, 384, 768)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p0elb"]
 atlas = ExtResource("2_pcunn")
@@ -96,6 +125,32 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsceo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n84io")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8rij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi63f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5myo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkn64")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tndks")
+}],
+"loop": true,
+"name": &"tsismis",
 "speed": 5.0
 }, {
 "frames": [{
