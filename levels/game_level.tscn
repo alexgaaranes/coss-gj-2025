@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 [gd_scene load_steps=7 format=3 uid="uid://41dwkup4ipxm"]
-=======
-[gd_scene load_steps=6 format=3 uid="uid://41dwkup4ipxm"]
->>>>>>> 56c6e6271b0b428948071b1ce7220e0543aabf5d
 
 [ext_resource type="PackedScene" uid="uid://cha2wnaqrkf7s" path="res://scenes/food/food.tscn" id="1_d65c1"]
 [ext_resource type="PackedScene" uid="uid://bhjygflt3q81y" path="res://scenes/maps/fiesta.tscn" id="1_sklrn"]
@@ -14,10 +10,6 @@ size = Vector2(15.5556, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0b0m"]
 size = Vector2(128, 384)
-<<<<<<< HEAD
-=======
-[ext_resource type="PackedScene" uid="uid://kxmh1ixtccin" path="res://scenes/npc/host_npc.tscn" id="4_n0b0m"]
->>>>>>> 56c6e6271b0b428948071b1ce7220e0543aabf5d
 
 [node name="GameLevel" type="Node2D"]
 
@@ -33,11 +25,7 @@ position = Vector2(168, 360)
 
 [node name="Map" parent="." instance=ExtResource("1_sklrn")]
 
-<<<<<<< HEAD
 [node name="Player" parent="Map" groups=["player_dialogue_detection_group"] instance=ExtResource("2_d65c1")]
-=======
-[node name="Player" parent="Map" instance=ExtResource("2_d65c1")]
->>>>>>> 56c6e6271b0b428948071b1ce7220e0543aabf5d
 position = Vector2(641, 658)
 scale = Vector2(7.2, 7.2)
 
@@ -51,10 +39,6 @@ shape = SubResource("RectangleShape2D_2i5ty")
 visible = false
 position = Vector2(1350, 653)
 scale = Vector2(8, 6.504)
-<<<<<<< HEAD
-=======
-SPEED = 200.0
->>>>>>> 56c6e6271b0b428948071b1ce7220e0543aabf5d
 
 [node name="Fiesta_CharacterBody2D#Area2D2" type="Area2D" parent="." groups=["player_dialogue_detection_group"]]
 visible = false
