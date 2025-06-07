@@ -6,7 +6,8 @@ extends Node2D
 var direction: int = 1  # 1 = right, -1 = left
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
 
-var isStealing: bool = false;
+var isStealing: bool = false
+var velocity: Vector2
 
 func _ready():
 	sprite.play("Idle")
@@ -16,7 +17,7 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	var velocity = Vector2.ZERO
+	velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_left"):
 		velocity.x -= speed / weight
 		sprite.flip_h = true

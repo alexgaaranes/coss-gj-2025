@@ -3,8 +3,10 @@ extends Node2D
 var is_overlapping = false
 var has_timer = false
 var is_stealing = false
+var player = null
 
 func _on_area_2d_area_entered(area):
+	player = area.get_parent()
 	GlobalSignals.emit_signal("is_overlapping_food")
 	is_overlapping = true
 
@@ -14,6 +16,13 @@ func _ready():
 	GlobalSignals.connect("has_failed_stealing_food", self._on_exit_stealing)
 
 func _process(delta):
+	if player != null and player.velocity != Vector2.ZERO:
+		if is_stealing:
+			del_timer()
+			GlobalSignals.emit_signal("has_failed_stealing_food")
+			is_overlapping = true	# only for this 
+		else:
+			return
 	if Input.is_action_just_released("interact_food") and is_overlapping:
 		spawn_timer()
 		GlobalSignals.emit_signal("play_sound", "InteractFood")
@@ -27,6 +36,7 @@ func _process(delta):
 func _on_area_2d_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
 	GlobalSignals.emit_signal("is_not_overlapping_food")
 	GlobalSignals.emit_signal("is_finished_stealing_food")
+	player = null
 	del_timer()
 	
 

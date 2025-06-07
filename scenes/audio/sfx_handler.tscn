@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bf4s1yn03bevd"]
+[gd_scene load_steps=10 format=3 uid="uid://bf4s1yn03bevd"]
 
 [ext_resource type="AudioStream" uid="uid://dhxnc6pyg4nso" path="res://assets/audio/scoop.wav" id="1_6ygvl"]
 [ext_resource type="Script" uid="uid://cxgfcwnf7sh4e" path="res://scripts/audio/sfx_handler.gd" id="1_bb07u"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://bhi6hljxjyumt" path="res://assets/audio/step1.wav" id="4_qm26m"]
 [ext_resource type="AudioStream" uid="uid://dgyrm46fwlw2v" path="res://assets/audio/step2.wav" id="5_873n7"]
 [ext_resource type="AudioStream" uid="uid://dwnd5bkjspd8x" path="res://assets/audio/click.wav" id="5_dk0y7"]
+[ext_resource type="AudioStream" uid="uid://clj2d1eerlltm" path="res://assets/audio/caught.wav" id="6_bj72o"]
 [ext_resource type="AudioStream" uid="uid://b8a076m6jdbwf" path="res://assets/audio/step3.wav" id="6_dk0y7"]
 
 [node name="SfxHandler" type="Node2D"]
@@ -23,6 +24,9 @@ stream = ExtResource("4_873n7")
 
 [node name="Click" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_dk0y7")
+
+[node name="Caught" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_bj72o")
 
 [node name="Steps" type="Node2D" parent="."]
 
