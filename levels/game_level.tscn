@@ -33,10 +33,12 @@ scale = Vector2(7.2, 7.2)
 [node name="Area2D2" type="Area2D" parent="Map/Player" groups=["player_dialogue_detection_group"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/Player/Area2D2"]
+visible = false
 position = Vector2(-0.138885, -23.6111)
 shape = SubResource("RectangleShape2D_2i5ty")
 
 [node name="HostNpc" parent="." instance=ExtResource("4_n0b0m")]
+visible = false
 position = Vector2(1350, 653)
 scale = Vector2(8, 6.504)
 
@@ -47,14 +49,5 @@ visible = false
 visible = false
 position = Vector2(64, 192)
 shape = SubResource("RectangleShape2D_n0b0m")
-
-[node name="npc_followpath2d" parent="." instance=ExtResource("4_n0b0m")]
-position = Vector2(805, 416)
-
-[node name="npc_followpath2d2" parent="." instance=ExtResource("4_n0b0m")]
-position = Vector2(504, 416)
-
-[node name="npc_followpath2d3" parent="." instance=ExtResource("4_n0b0m")]
-position = Vector2(48, 416)
 
 [node name="GameLogic" parent="." instance=ExtResource("5_2i5ty")]

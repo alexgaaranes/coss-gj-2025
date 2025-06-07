@@ -7,6 +7,10 @@ enum State { IDLE, WALK }
 @onready var walk_timer: Timer = $WalkTimer
 @onready var dialogue_detection_area: Area2D = $CharacterBody2D/DialogueDetection
 @onready var dialogue_text_label: Label = $CharacterBody2D/DialogueTextLabel
+@onready var npc_dialogue = $CharacterBody2D/NpcDialogue/MarginContainer
+@onready var npc_text = $CharacterBody2D/NpcDialogue/MarginContainer/MarginContainer/HBoxContainer/Label2
+
+@export var npc_dialogue_text: String = "dialogue"
 
 @export var move_speed: float = 0.05
 @export var loop_path: bool = true # true if looping
@@ -34,8 +38,10 @@ func _ready() -> void:
 	dialogue_detection_area.area_entered.connect(_on_dialogue_detection_area_entered)
 	dialogue_detection_area.area_exited.connect(_on_dialogue_detection_area_exited)
 
-	dialogue_text_label.hide()
-	dialogue_text_label.text = "The host is pretty handsome"
+	#dialogue_text_label.hide()
+	dialogue_text_label.text = npc_dialogue_text
+	print("npc text: ", npc_text)
+	npc_text.text = npc_dialogue_text
 
 	var initial_choice = randi() % 2
 	if initial_choice == 0:
@@ -109,9 +115,13 @@ func _update_walk_animation(movement: Vector2) -> void:
 
 func _update_dialogue_visibility() -> void:
 	if player_in_dialogue_area and current_state == State.IDLE:
-		dialogue_text_label.show()
+		#dialogue_text_label.show()
+		npc_dialogue.visible = true
+		#npc_text.show()
 	else:
-		dialogue_text_label.hide()
+		#dialogue_text_label.hide()
+		npc_dialogue.visible = false
+		#npc_text.hide()
 
 
 func _on_dialogue_detection_area_entered(area: Area2D) -> void:
