@@ -8,6 +8,8 @@ var points: int = 0
 var time_left: float = 0.0
 var game_over: bool = false
 
+
+
 @onready var hud := $HUD
 
 func _ready() -> void:
@@ -15,8 +17,10 @@ func _ready() -> void:
 	points = 0
 	game_over = false
 	
+	GlobalSignals.connect("has_successfully_sharon", self._on_successful_sharon)
+	
 	hud.hide_all_status_panels()
-	hud.update_tupperwares(points, max_points, points_per_tupperware)
+
 	hud.update_timer_label(time_left)
 
 	#test_points_sequence()  uncomment this for testing of win condition
@@ -38,7 +42,7 @@ func add_points(amount: int) -> void:
 	if game_over:
 		return
 
-	points = clamp(points + amount, 0, max_points)
+	points = clamp(points + amount, 0, max_points) + 500
 	hud.update_tupperwares(points, max_points, points_per_tupperware)
 
 	if points >= max_points:
@@ -77,3 +81,6 @@ func _on_restart_button_pressed() -> void:
 func _on_return_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://levels/menu.tscn")
+	
+func _on_successful_sharon(data: Dictionary) -> void:
+	add_points(data["points"])

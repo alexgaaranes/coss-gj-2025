@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3qr3k87vwwxg"
-path="res://.godot/imported/tupperware_gray.png-105c5197e1b20297b0424646b16c9a5d.ctex"
+uid="uid://c3fp6lyefmsb5"
+path="res://.godot/imported/lunchbox.png-fbc45f75081e184e04674f4b2b7c6333.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/hud/tupperware_gray.png"
-dest_files=["res://.godot/imported/tupperware_gray.png-105c5197e1b20297b0424646b16c9a5d.ctex"]
+source_file="res://assets/ui/hud/lunchbox.png"
+dest_files=["res://.godot/imported/lunchbox.png-fbc45f75081e184e04674f4b2b7c6333.ctex"]
 
 [params]
 

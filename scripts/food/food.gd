@@ -3,6 +3,9 @@ extends Node2D
 var is_overlapping = false
 var has_timer = false
 
+@export var points := 100
+@export var weight := 10
+
 func _on_area_2d_area_entered(area):
 	is_overlapping = true
 
@@ -21,6 +24,15 @@ func spawn_timer():
 	is_overlapping = false
 	var timing_indicator_scene = preload("res://scenes/timing_indicator/timer.tscn")
 	var timing_indicator = timing_indicator_scene.instantiate()
+	
+	# Pass food data to timer
+	var timer_canvas = timing_indicator.get_child(0)
+	if timer_canvas:
+		timer_canvas.set_food({
+			"points": points,
+			"weight": weight
+		})
+	
 	var screen_size = get_viewport().get_visible_rect().size
 	timing_indicator.get_child(0).scale = Vector2(0.4, 0.4)
 	get_tree().root.add_child(timing_indicator)

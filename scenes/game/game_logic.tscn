@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://clcss2bcwcxel" path="res://assets/ui/hud/bag_gray.png" id="6_1ghly"]
 [ext_resource type="Texture2D" uid="uid://w6kmucc6aicl" path="res://assets/ui/buttons/credits_button.png" id="6_wjtsn"]
 [ext_resource type="Texture2D" uid="uid://b5pbl35772fi6" path="res://assets/ui/hud/bag.png" id="7_ujcqu"]
-[ext_resource type="Texture2D" uid="uid://b3qr3k87vwwxg" path="res://assets/ui/hud/tupperware_gray.png" id="8_8v2yl"]
-[ext_resource type="Texture2D" uid="uid://bkf88lo3d2x3w" path="res://assets/ui/hud/tupperware.png" id="9_x4j3j"]
+[ext_resource type="Texture2D" uid="uid://7h4706x4ol8f" path="res://assets/ui/hud/lunchbox_gray.png" id="8_8v2yl"]
+[ext_resource type="Texture2D" uid="uid://c3fp6lyefmsb5" path="res://assets/ui/hud/lunchbox.png" id="9_x4j3j"]
 
 [node name="GameLogic" type="Control"]
 layout_mode = 3
@@ -402,10 +402,12 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="RestartButton" type="TextureButton" parent="HUD/GameWinPanel/CenterContainer/ButtonContainer"]
+process_mode = 3
 layout_mode = 2
 texture_normal = ExtResource("6_wjtsn")
 
 [node name="ReturnButton" type="TextureButton" parent="HUD/GameWinPanel/CenterContainer/ButtonContainer"]
+process_mode = 3
 layout_mode = 2
 texture_normal = ExtResource("6_wjtsn")
 

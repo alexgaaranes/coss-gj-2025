@@ -39,12 +39,9 @@ func _ready() -> void:
 
 	var initial_choice = randi() % 2
 	if initial_choice == 0:
-		print("initial state: idle")
 		_change_state(State.IDLE)
 	else:
-		print("initial state: walking")
 		_change_state(State.WALK)
-	print("after initial state setup")
 
 func _process(delta: float) -> void:
 	var prev_global_position = global_position
@@ -76,7 +73,6 @@ func _change_state(new_state: State) -> void:
 	walk_timer.stop()
 
 	current_state = new_state
-	print("Changing state to: ", current_state)
 
 	match current_state:
 		State.IDLE:
@@ -116,13 +112,11 @@ func _update_dialogue_visibility() -> void:
 
 func _on_dialogue_detection_area_entered(area: Area2D) -> void:
 	if area.is_in_group(player_dialogue_detection_group):
-		print("Player entered dialogue zone!")
 		player_in_dialogue_area = true
 		_update_dialogue_visibility() 
 
 
 func _on_dialogue_detection_area_exited(area: Area2D) -> void:
 	if area.is_in_group(player_dialogue_detection_group):
-		print("Player exited dialogue zone!")
 		player_in_dialogue_area = false
 		_update_dialogue_visibility() 

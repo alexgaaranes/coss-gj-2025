@@ -53,7 +53,6 @@ func _process(delta):
 			
 			# Bro is alr there, stop chasin
 			if position.distance_to(target_position) < 150:
-				print("I am done")
 				velocity.x = 0
 				sprite.play("Idle")
 				current_state = State.IDLE
@@ -120,17 +119,14 @@ func evaluate_player_position(player_pos: Vector2) -> bool:
 	areaDirection.x = 1 if areaDirection.x > 0 else -1
 
 	if areaDirection.x == direction:
-		print("You are facing me")
 		return true
 	else:
-		print("You are behind me")
 		return false
 
 # Listener for failed skill check signal
 func _on_send_player_location(data):
 	current_state = State.PURSUE;
 	target_position = data
-	print("Chasing!")
 
 # Listener for skill check event
 func _on_is_stealing_food():
@@ -140,5 +136,4 @@ func _on_is_stealing_food():
 		isCaught = evaluate_player_position(playerArea.position)
 		
 	if isCaught:
-		print("Caught ya!")
 		current_state = State.ANGRY

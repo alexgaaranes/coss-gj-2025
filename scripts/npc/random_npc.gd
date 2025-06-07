@@ -24,12 +24,9 @@ func _ready() -> void:
 
 	var initial_choice = randi() % 2
 	if initial_choice == 0:
-		print("Initial State: IDLE")
 		_change_state(State.IDLE)
 	else:
-		print("Initial State: WALK")
 		_change_state(State.WALK)
-	print("after it")
 
 func _process(delta: float) -> void:
 	match current_state:
@@ -46,7 +43,6 @@ func _change_state(new_state: State) -> void:
 	walk_timer.stop()
 
 	current_state = new_state
-	print("Changing to State: ", current_state)
 
 	match current_state:
 		State.IDLE:
@@ -66,11 +62,9 @@ func _change_state(new_state: State) -> void:
 			walk_timer.start()
 
 func _on_idle_timer_timeout() -> void:
-	print("Idle Timer Timeout -> Changing to WALK")
 	_change_state(State.WALK)
 
 func _on_walk_timer_timeout() -> void:
-	print("Walk Timer Timeout -> Changing to IDLE")
 	_change_state(State.IDLE)
 
 func _update_walk_animation(direction: int) -> void:
