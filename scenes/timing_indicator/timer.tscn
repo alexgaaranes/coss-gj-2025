@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://60nre1fic25a"]
+[gd_scene load_steps=4 format=3 uid="uid://60nre1fic25a"]
 
 [ext_resource type="Script" uid="uid://dgejrbvndrrsv" path="res://scripts/timing_indicator/timer.gd" id="1_wym0m"]
+[ext_resource type="Texture2D" uid="uid://w6x3d86kouk1" path="res://assets/ui/timing_indicator/qte_bar.png" id="2_dsmvr"]
+[ext_resource type="Texture2D" uid="uid://rnq7blr128ra" path="res://assets/ui/timing_indicator/spoon.png" id="3_3ycd1"]
 
 [node name="Timer" type="Control"]
 layout_mode = 3
@@ -27,26 +29,68 @@ offset_bottom = -107.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Bar" type="ColorRect" parent="Timer Canvas/BarContainer"]
+[node name="Bar" type="TextureRect" parent="Timer Canvas/BarContainer"]
 layout_mode = 0
-offset_top = 2.0
-offset_right = 590.0
-offset_bottom = 70.0
+offset_left = -5.0
+offset_top = -26.0
+offset_right = 585.0
+offset_bottom = 96.0
+texture = ExtResource("2_dsmvr")
 
 [node name="Zone" type="ColorRect" parent="Timer Canvas/BarContainer"]
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 0.225
-offset_left = 245.0
-offset_top = 2.0
-offset_right = 345.0
-offset_bottom = 47.275
-color = Color(0, 1, 0, 1)
+offset_left = 222.0
+offset_top = -2.0
+offset_right = 347.0
+offset_bottom = 51.275
+color = Color(0.134241, 0.970344, 0.531923, 1)
 
-[node name="Arrow" type="ColorRect" parent="Timer Canvas/BarContainer"]
+[node name="Design" type="ColorRect" parent="Timer Canvas/BarContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.225
+offset_left = 223.0
+offset_top = 74.0
+offset_right = 343.0
+offset_bottom = 59.275
+color = Color(0.0652562, 0.520357, 0.276558, 1)
+
+[node name="Design4" type="ColorRect" parent="Timer Canvas/BarContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.225
+offset_left = 223.0
+offset_top = -10.0
+offset_right = 343.0
+offset_bottom = -24.725
+color = Color(0.0652562, 0.520357, 0.276558, 1)
+
+[node name="Design2" type="ColorRect" parent="Timer Canvas/BarContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.225
+offset_left = 214.0
+offset_top = -2.0
+offset_right = 223.0
+offset_bottom = 51.275
+color = Color(0.0652562, 0.520357, 0.276558, 1)
+
+[node name="Design3" type="ColorRect" parent="Timer Canvas/BarContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.225
+offset_left = 343.0
+offset_top = -2.0
+offset_right = 352.0
+offset_bottom = 51.275
+color = Color(0.0652562, 0.520357, 0.276558, 1)
+
+[node name="Arrow" type="TextureRect" parent="Timer Canvas/BarContainer"]
 layout_mode = 0
 offset_left = 2.0
-offset_top = 61.0
-offset_right = 20.0
-offset_bottom = 127.0
-color = Color(0.959757, 0.89749, 0, 1)
+offset_top = -95.0
+offset_right = 60.0
+offset_bottom = 85.0
+texture = ExtResource("3_3ycd1")
