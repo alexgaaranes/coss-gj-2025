@@ -2,7 +2,7 @@ extends Node
 
 @export var max_points := 5000 #TODO: placeholder values only
 @export var points_per_tupperware := 1000 #TODO: placeholder values only
-@export var timer_countdown := 2 #TODO: replace this with actual time limit, this is for testing only
+@export var timer_countdown := 60 #TODO: replace this with actual time limit, this is for testing only
 
 var points: int = 0
 var time_left: float = 0.0
@@ -18,6 +18,8 @@ func _ready() -> void:
 	hud.hide_all_status_panels()
 	hud.update_tupperwares(points, max_points, points_per_tupperware)
 	hud.update_timer_label(time_left)
+	
+	GlobalSignals.connect("is_finished_stealing_food", self.add_points)
 
 	#test_points_sequence()  uncomment this for testing of win condition
 
@@ -40,7 +42,7 @@ func add_points(amount: int) -> void:
 
 	points = clamp(points + amount, 0, max_points)
 	hud.update_tupperwares(points, max_points, points_per_tupperware)
-
+	print("Points: " + str(points))
 	if points >= max_points:
 		game_won()
 
