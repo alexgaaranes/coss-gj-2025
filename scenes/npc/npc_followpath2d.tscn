@@ -6,9 +6,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_vu7hf"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 128, 64, 0, 0, 0, 0, 64, 64, 0, 0, 0, 0, 392, 64, 0, 0, 0, 0, 312, 64, 0, 0, 0, 0, -72, 64, 0, 0, 0, 0, 192, 64, 0, 0, 0, 0, 0, 64)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 128, 64, 0, 0, 0, 0, 64, 64, 0, 0, 0, 0, 392, 64, 0, 0, 0, 0, 312, 64, 0, 0, 0, 0, -72, 64, 0, 0, 0, 0, 192, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 8, 224)
 }
-point_count = 8
+point_count = 9
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2tce6"]
 atlas = ExtResource("2_6s0tf")
@@ -223,7 +223,7 @@ animations = [{
 size = Vector2(40, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6s0tf"]
-size = Vector2(320, 20)
+size = Vector2(384, 20)
 
 [node name="npc_followpath2d" type="Path2D"]
 curve = SubResource("Curve2D_vu7hf")
@@ -234,7 +234,6 @@ rotates = false
 script = ExtResource("1_pxfim")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PathFollow2D"]
-scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_2flex")
 animation = &"idle"
 
@@ -244,11 +243,21 @@ animation = &"idle"
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="PathFollow2D"]
 
+[node name="DialogueTextLabel" type="Label" parent="PathFollow2D/CharacterBody2D"]
+offset_left = -16.0
+offset_top = -144.0
+offset_right = 24.0
+offset_bottom = -121.0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/CharacterBody2D"]
 shape = SubResource("RectangleShape2D_pxfim")
 
 [node name="DialogueDetection" type="Area2D" parent="PathFollow2D/CharacterBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PathFollow2D/CharacterBody2D/DialogueDetection"]
-position = Vector2(32, 0)
 shape = SubResource("RectangleShape2D_6s0tf")
+
+[connection signal="draw" from="PathFollow2D/CharacterBody2D/DialogueTextLabel" to="PathFollow2D" method="_on_dialogue_text_label_draw"]
+[connection signal="focus_exited" from="PathFollow2D/CharacterBody2D/DialogueTextLabel" to="PathFollow2D" method="_on_dialogue_text_label_focus_exited"]
+[connection signal="area_entered" from="PathFollow2D/CharacterBody2D/DialogueDetection" to="PathFollow2D" method="_on_dialogue_detection_area_entered"]
+[connection signal="area_exited" from="PathFollow2D/CharacterBody2D/DialogueDetection" to="PathFollow2D" method="_on_dialogue_detection_area_exited"]

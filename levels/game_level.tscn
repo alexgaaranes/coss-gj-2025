@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://41dwkup4ipxm"]
+[gd_scene load_steps=6 format=3 uid="uid://41dwkup4ipxm"]
 
 [ext_resource type="PackedScene" uid="uid://cha2wnaqrkf7s" path="res://scenes/food/food.tscn" id="1_d65c1"]
 [ext_resource type="PackedScene" uid="uid://bhjygflt3q81y" path="res://scenes/maps/fiesta.tscn" id="1_sklrn"]
 [ext_resource type="PackedScene" uid="uid://6er8nk8tyg17" path="res://scenes/player/player.tscn" id="2_d65c1"]
+[ext_resource type="PackedScene" uid="uid://djbg3adro7lij" path="res://scenes/npc/npc_followpath2d.tscn" id="4_n0b0m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0b0m"]
+size = Vector2(128, 384)
 
 [node name="GameLevel" type="Node2D"]
 
@@ -23,3 +27,18 @@ position = Vector2(168, 360)
 
 [node name="CharacterBody2D" parent="Fiesta" instance=ExtResource("2_d65c1")]
 position = Vector2(424, 224)
+
+[node name="Area2D2" type="Area2D" parent="Fiesta/CharacterBody2D" groups=["player_dialogue_detection_group"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fiesta/CharacterBody2D/Area2D2"]
+position = Vector2(64, 192)
+shape = SubResource("RectangleShape2D_n0b0m")
+
+[node name="npc_followpath2d" parent="." instance=ExtResource("4_n0b0m")]
+position = Vector2(805, 416)
+
+[node name="npc_followpath2d2" parent="." instance=ExtResource("4_n0b0m")]
+position = Vector2(504, 416)
+
+[node name="npc_followpath2d3" parent="." instance=ExtResource("4_n0b0m")]
+position = Vector2(48, 416)
