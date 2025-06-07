@@ -13,6 +13,7 @@ size = Vector2(15.5556, 20)
 size = Vector2(128, 384)
 
 [node name="GameLevel" type="Node2D"]
+process_mode = 1
 
 [node name="Label" type="Label" parent="."]
 offset_left = 576.0

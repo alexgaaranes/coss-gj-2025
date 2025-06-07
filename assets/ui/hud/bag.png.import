@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://w6kmucc6aicl"
-path="res://.godot/imported/credits_button.png-e4940b83784e4ea1d59828716849b717.ctex"
+uid="uid://b5pbl35772fi6"
+path="res://.godot/imported/bag.png-f071e78e723c3d6c05aee2c2f68c6b13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/credits_button.png"
-dest_files=["res://.godot/imported/credits_button.png-e4940b83784e4ea1d59828716849b717.ctex"]
+source_file="res://assets/ui/hud/bag.png"
+dest_files=["res://.godot/imported/bag.png-f071e78e723c3d6c05aee2c2f68c6b13.ctex"]
 
 [params]
 
