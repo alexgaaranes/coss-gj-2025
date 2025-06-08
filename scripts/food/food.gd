@@ -44,7 +44,6 @@ func _on_area_2d_area_shape_exited(area_rid, area, area_shape_index, local_shape
 		GlobalSignals.emit_signal("is_finished_stealing_food")
 		player = null
 		del_timer()
-	
 
 # other functions
 func spawn_timer():

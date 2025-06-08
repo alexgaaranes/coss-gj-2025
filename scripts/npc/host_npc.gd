@@ -140,8 +140,9 @@ func _on_is_stealing_food():
 		isCaught = evaluate_player_position(playerArea.get_parent().global_position)
 
 	if isCaught:
+		GlobalSignals.emit_signal("pan_camera", self.global_position)
+		print("Passing to: ", self.global_position.x)
 		GlobalSignals.del_timer()
-		print("Caught!")
 		current_state = State.ANGRY 
 		
 		timer.stop()
