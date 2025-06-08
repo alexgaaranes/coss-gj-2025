@@ -7,12 +7,14 @@ extends Node2D
 
 var direction: int = 1  # 1 = right, -1 = left
 @onready var sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
+@onready var camera: Camera2D = $Camera2D
 
 var isStealing: bool = false
 var velocity: Vector2
 
 func _ready():
 	sprite.play("Idle")
+	camera.enabled = true
 	GlobalSignals.connect("has_failed_stealing_food", self._on_has_failed_stealing_food)
 	GlobalSignals.connect("is_stealing_food", self._on_is_stealing_food)
 	GlobalSignals.connect("is_finished_stealing_food", self._on_is_finished_stealing_food)
@@ -39,7 +41,16 @@ func _physics_process(delta):
 	else:
 		sprite.play("Walk")
 	
-	position += velocity * delta 
+	var hypo_position = position + (velocity * delta) 
+	print(hypo_position.x)
+	if hypo_position.x > 2528.0:
+		position.x += 0
+	else:
+		if hypo_position.x < 64:
+			position.x += 0
+		else:
+			position += velocity * delta 
+	print("current position: ", position.x)
 	
 func _on_has_failed_stealing_food():
 	GlobalSignals.emit_signal("send_player_location", self.position)

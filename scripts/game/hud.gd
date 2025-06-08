@@ -91,9 +91,11 @@ func _on_exit_stealing():
 
 func show_game_over() -> void:
 	game_over_panel.visible = true
+	GlobalSounds.play_lose_music()
 
 func show_game_win() -> void:
 	game_win_panel.visible = true
+	GlobalSounds.play_win_music()
 
 func hide_all_status_panels() -> void:
 	game_over_panel.visible = false

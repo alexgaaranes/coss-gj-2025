@@ -26,9 +26,10 @@ func _ready() -> void:
 	var npc3 = npc1_scene.instantiate()
 	var host_npc = host_npc_scene.instantiate()
 	
-	npc1.position = Vector2(-100, 395)
-	npc2.position = Vector2(500, 395)
-	npc3.position = Vector2(1200, 395)
+	npc1.position = Vector2(400, 395)
+	npc2.position = Vector2(1500, 395)
+	npc3.position = Vector2(2000, 395)
+
 	host_npc.position = Vector2(600, 460)
 	
 	# get the available sprite frames
@@ -212,14 +213,14 @@ func _on_game_lost_triggered() -> void:
 		#await get_tree().create_timer(1.0).timeout
 
 func _on_restart_button_pressed() -> void:
-	GlobalSounds.play_click()
-	get_tree().paused = false
-	get_tree().change_scene_to_file("res://levels/menu.tscn")
-
-func _on_return_button_pressed() -> void:
-	GlobalSounds.play_click()
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+	GlobalSounds.on_restart_pressed()
+
+func _on_return_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://levels/menu.tscn")
+	GlobalSounds.on_back_to_menu_pressed()
 
 func _on_successful_sharon(data: Dictionary) -> void:
 	add_points(data["points"])
