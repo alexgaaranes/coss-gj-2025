@@ -33,6 +33,7 @@ texture = ExtResource("2_d6j4h")
 
 [node name="Food" parent="." instance=ExtResource("3_d6j4h")]
 position = Vector2(256, 392)
+points = 220
 
 [node name="Sprite2D" type="Sprite2D" parent="Food"]
 position = Vector2(48, 32)
@@ -49,6 +50,7 @@ texture = ExtResource("5_d6j4h")
 
 [node name="Food3" parent="." instance=ExtResource("3_d6j4h")]
 position = Vector2(1696, 392)
+points = 210
 
 [node name="Sprite2D2" type="Sprite2D" parent="Food3"]
 position = Vector2(48, 32)
@@ -57,6 +59,7 @@ texture = ExtResource("6_j647j")
 
 [node name="Food4" parent="." instance=ExtResource("3_d6j4h")]
 position = Vector2(2192, 392)
+points = 160
 
 [node name="Sprite2D2" type="Sprite2D" parent="Food4"]
 position = Vector2(56, 32)

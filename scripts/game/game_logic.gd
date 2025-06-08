@@ -212,15 +212,15 @@ func _on_game_lost_triggered() -> void:
 		#await get_tree().create_timer(1.0).timeout
 
 func _on_restart_button_pressed() -> void:
-	GlobalSounds.play_click()
-	get_tree().paused = false
-	get_tree().change_scene_to_file("res://levels/menu.tscn")
-
-func _on_return_button_pressed() -> void:
-	GlobalSounds.play_click()
 	get_tree().paused = false
 	get_tree().reload_current_scene()
-	
+	GlobalSounds.on_restart_pressed()
+
+func _on_return_button_pressed() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://levels/menu.tscn")
+	GlobalSounds.on_back_to_menu_pressed()
+
 func _on_successful_sharon(data: Dictionary) -> void:
 	add_points(data["points"])
 	add_weight(data["weight"])

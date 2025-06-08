@@ -69,7 +69,7 @@ func _input(event):
 			add_food_weight()
 			GlobalSignals.emit_signal("has_successfully_sharon", food)
 			input_feedback(true)
-			GlobalSignals.emit_signal("is_finished_stealing_food", 500)
+			GlobalSignals.emit_signal("is_finished_stealing_food", 0)
 			GlobalSignals.emit_signal("is_finished_stealing_food")
 			GlobalSignals.emit_signal("play_sound", "Scoop")
 		else:
