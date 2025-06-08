@@ -15,6 +15,9 @@ var max_capacity: float = 100.0
 
 func _ready() -> void:
 	randomize() 
+	var starting_x_positions: Array[float] = [400.0, 600.0, 1000.0, 1600.0, 2000.0]
+	starting_x_positions.shuffle()
+	
 	var npc1_scene = preload("res://scenes/npc/npc_followpath2d.tscn")
 	var npc2_scene = preload("res://scenes/npc/npc_followpath2d.tscn")
 	var npc3_scene = preload("res://scenes/npc/npc_followpath2d.tscn")
@@ -28,12 +31,17 @@ func _ready() -> void:
 	var npc4 = npc4_scene.instantiate()
 	var host_npc = host_npc_scene.instantiate()
 	
-	npc1.position = Vector2(400, 395)
-	npc2.position = Vector2(1000, 395)
-	npc3.position = Vector2(1600, 395)
-	npc4.position = Vector2(2000, 395)
-
-	host_npc.position = Vector2(600, 460)
+	#npc1.position = Vector2(400, 395)
+	#npc2.position = Vector2(1000, 395)
+	#npc3.position = Vector2(1600, 395)
+	#npc4.position = Vector2(2000, 395)
+#
+	#host_npc.position = Vector2(600, 460)
+	npc1.position = Vector2(starting_x_positions.pop_front(), 395)
+	npc2.position = Vector2(starting_x_positions.pop_front(), 395)
+	npc3.position = Vector2(starting_x_positions.pop_front(), 395)
+	npc4.position = Vector2(starting_x_positions.pop_front(), 395)
+	host_npc.position = Vector2(starting_x_positions.pop_front(), 460)
 	
 	# get the available sprite frames
 	var available_sprite_frames: Array[SpriteFrames] = [
@@ -90,7 +98,7 @@ func _ready() -> void:
 	var lola_dialogues = [
 		"Di halatang matanda, super lakas pa niya!",
 		"Lagi nalang siyang may discount sa lahat",
-		"Laging may dalang good vibes, parang kasabay ng kulay niya",
+		"Laging may dalang good vibes tulad ng kulay ng suot niya",
 		"Asawa siya ni lolo ^_^"
 	]
 	lola_dialogues.shuffle()
