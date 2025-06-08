@@ -107,9 +107,8 @@ func get_player_in_detection_zone() -> Area2D:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().get_name() == "Player":
 		# add the angry condition
-		if current_state != State.ANGRY and current_state != State.PURSUE:
-			print("Found player")
-			evaluate_player_position(area.get_parent().global_position)
+		if current_state != State.ANGRY:
+			_on_is_stealing_food()
 
 func evaluate_player_position(player_pos: Vector2) -> bool:
 	var areaDirection := (player_pos - self.position).normalized()
@@ -129,7 +128,14 @@ func _on_send_player_location(data):
 func _on_is_stealing_food():
 	var isCaught = false
 	var playerArea = get_player_in_detection_zone()
+	if !playerArea:
+		return
+		
 	var player = playerArea.get_parent()
+	
+	if !player:
+		return
+		
 	if playerArea and player.isStealing:
 		isCaught = evaluate_player_position(playerArea.get_parent().global_position)
 

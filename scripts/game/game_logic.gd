@@ -128,9 +128,9 @@ func _ready() -> void:
 			npc.get_node("PathFollow2D/CharacterBody2D/NpcDialogue/MarginContainer").position = Vector2(-226.11,-226.11)
 		if npc.get_node("PathFollow2D/AnimatedSprite2D").sprite_frames == load("res://assets/npc_sprites/tito_frames.tres"):
 			npc.get_node("PathFollow2D/CharacterBody2D/NpcDialogue/MarginContainer").position = Vector2(-226.11, -232.0)
-	#add_child(npc1)
-	#add_child(npc2)
-	#add_child(npc3)
+	add_child(npc1)
+	add_child(npc2)
+	add_child(npc3)
 	add_child(host_npc)
 	
 	time_left = timer_countdown
