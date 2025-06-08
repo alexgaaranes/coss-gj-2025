@@ -63,7 +63,21 @@ func _process(delta):
 			velocity.x = 0
 		State.WALK:
 			sprite.play("walk")
-			velocity.x = direction * SPEED
+			
+			
+			var hypo_po = position.x + (direction * SPEED)
+			print("hypo pos: ", hypo_po)
+			if hypo_po > 2700:
+				velocity.x = 0
+				pick_random_behavior()
+				return
+			else:
+				if hypo_po < 0:
+					velocity.x = 0
+					pick_random_behavior()
+					return
+				else:
+					velocity.x = direction * SPEED
 		State.TURN:
 			sprite.play("idle")
 			velocity.x = 0
