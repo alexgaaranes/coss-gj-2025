@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://41dwkup4ipxm"]
+[gd_scene load_steps=9 format=3 uid="uid://41dwkup4ipxm"]
 
-[ext_resource type="PackedScene" uid="uid://cha2wnaqrkf7s" path="res://scenes/food/food.tscn" id="1_d65c1"]
+[ext_resource type="Script" uid="uid://t8rnlq2nrvns" path="res://scripts/game/game_level.gd" id="1_2i5ty"]
 [ext_resource type="PackedScene" uid="uid://bhjygflt3q81y" path="res://scenes/maps/fiesta.tscn" id="1_sklrn"]
 [ext_resource type="PackedScene" uid="uid://bf4s1yn03bevd" path="res://scenes/audio/sfx_handler.tscn" id="1_wtvao"]
 [ext_resource type="PackedScene" uid="uid://6er8nk8tyg17" path="res://scenes/player/player.tscn" id="2_d65c1"]
 [ext_resource type="PackedScene" uid="uid://bxoh4feehd3jv" path="res://scenes/game/game_logic.tscn" id="5_2i5ty"]
-[ext_resource type="PackedScene" uid="uid://kxmh1ixtccin" path="res://scenes/npc/host_npc.tscn" id="6_wtvao"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2i5ty"]
 size = Vector2(15.5556, 20)
@@ -22,24 +21,13 @@ glow_hdr_threshold = 1.5
 
 [node name="GameLevel" type="Node2D"]
 process_mode = 1
-
-[node name="SfxHandler" parent="." instance=ExtResource("1_wtvao")]
-
-[node name="Label" type="Label" parent="."]
-offset_left = 576.0
-offset_top = 40.0
-offset_right = 708.0
-offset_bottom = 63.0
-text = "game level scene"
-
-[node name="Food" parent="." instance=ExtResource("1_d65c1")]
-position = Vector2(168, 360)
+script = ExtResource("1_2i5ty")
 
 [node name="Map" parent="." instance=ExtResource("1_sklrn")]
 
 [node name="Player" parent="Map" groups=["player_dialogue_detection_group"] instance=ExtResource("2_d65c1")]
-position = Vector2(642, 673)
-scale = Vector2(7.2, 7.2)
+position = Vector2(1456, 448)
+scale = Vector2(0.5, 0.5)
 
 [node name="Area2D2" type="Area2D" parent="Map/Player" groups=["player_dialogue_detection_group"]]
 
@@ -47,6 +35,10 @@ scale = Vector2(7.2, 7.2)
 visible = false
 position = Vector2(-0.138885, -23.6111)
 shape = SubResource("RectangleShape2D_2i5ty")
+
+[node name="SfxHandler" parent="Map/Player" instance=ExtResource("1_wtvao")]
+position = Vector2(-560, -890)
+scale = Vector2(2, 2)
 
 [node name="Fiesta_CharacterBody2D#Area2D2" type="Area2D" parent="." groups=["player_dialogue_detection_group"]]
 visible = false
@@ -57,10 +49,8 @@ position = Vector2(64, 192)
 shape = SubResource("RectangleShape2D_n0b0m")
 
 [node name="GameLogic" parent="." instance=ExtResource("5_2i5ty")]
-
-[node name="HostNpc2" parent="." instance=ExtResource("6_wtvao")]
-position = Vector2(957, 673)
-scale = Vector2(7, 7)
+offset_top = -27.0
+offset_bottom = -27.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wtvao")

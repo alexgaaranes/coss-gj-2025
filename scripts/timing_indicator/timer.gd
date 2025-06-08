@@ -43,12 +43,21 @@ func _start_movement():
 	tween.tween_property(arrow, "position:x", start_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 func skill_check() -> bool:
-	var arrow_pos = arrow.position.x
-	var zone_pos = zone.position.x
-	var zone_width = zone.size.x # replace with zone.get_size().x when replaced with sprite
+	var arrow_size = arrow.texture.get_size() * arrow.scale
+	var arrow_rect = Rect2(
+		arrow.position,
+		arrow_size
+	)
 
-	return arrow_pos >= zone_pos and arrow_pos <= zone_pos + zone_width
+	var zone_size = zone.size * zone.scale
+	var zone_rect = Rect2(
+		zone.position,
+		zone_size
+	)
 
+	return arrow_rect.intersects(zone_rect)
+
+	return arrow_rect.intersects(zone_rect)
 func _input(event):
 	if not is_active:
 		return
@@ -60,7 +69,7 @@ func _input(event):
 			add_food_weight()
 			GlobalSignals.emit_signal("has_successfully_sharon", food)
 			input_feedback(true)
-			GlobalSignals.emit_signal("is_finished_stealing_food", 500)
+			GlobalSignals.emit_signal("is_finished_stealing_food", 0)
 			GlobalSignals.emit_signal("is_finished_stealing_food")
 			GlobalSignals.emit_signal("play_sound", "Scoop")
 		else:
@@ -90,7 +99,7 @@ func _on_feedback_finished():
 	bar.scale = Vector2(1, 1) # reset scale just in case
 	
 	get_parent().queue_free()
-	get_tree().root.get_node("GameLevel").get_node("Food").set_overlapping(true)
+	GlobalSignals.emit_signal("set_overlapping", true)
 
 func _cancel_skill_check():
 	if tween:
@@ -103,8 +112,12 @@ func _cancel_skill_check():
 
 # TODO: Dynamically add weight with food data
 func add_food_weight():
-	var player = get_tree().root.get_node("GameLevel").get_node("Map").get_node('Player')
+	var player = get_tree().root.get_node("GameLevel").get_node("Map2").get_node('Player')
 	player.add_food(food["weight"])
 	
 func set_food(food_stats: Dictionary):
 	food = food_stats
+	
+func _process(delta):
+	if is_active:
+		bar_bg.modulate = Color.GREEN if skill_check() else Color.RED

@@ -1,6 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://8mw1vt1fdd0j"]
+[gd_scene load_steps=9 format=3 uid="uid://8mw1vt1fdd0j"]
 
 [ext_resource type="PackedScene" uid="uid://dbkdj4n13kvps" path="res://scenes/maps/indoor_parallax.tscn" id="1_ulsyi"]
+[ext_resource type="Texture2D" uid="uid://w0vpcs183dwx" path="res://assets/maps/interior_table_elevated.png" id="2_d6j4h"]
+[ext_resource type="PackedScene" uid="uid://cha2wnaqrkf7s" path="res://scenes/food/food.tscn" id="3_d6j4h"]
+[ext_resource type="Texture2D" uid="uid://cvm32nsihry2w" path="res://assets/food/96_steak_dish.png" id="4_ev10d"]
+[ext_resource type="Texture2D" uid="uid://bx1vu6mi3m40u" path="res://assets/food/93_sandwich_dish.png" id="5_d6j4h"]
+[ext_resource type="Texture2D" uid="uid://b51ne3v3ddkdr" path="res://assets/food/98_sushi_dish.png" id="6_j647j"]
+[ext_resource type="Texture2D" uid="uid://bil0j3856t3t0" path="res://assets/food/19_burrito_dish.png" id="7_5e0dr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bamm5"]
 size = Vector2(2560, 96)
@@ -14,3 +20,48 @@ position = Vector2(1280, 672)
 shape = SubResource("RectangleShape2D_bamm5")
 
 [node name="IndoorParallax" parent="." instance=ExtResource("1_ulsyi")]
+
+[node name="FiestaTable" type="Sprite2D" parent="."]
+position = Vector2(648, 371)
+scale = Vector2(0.325, 0.47037)
+texture = ExtResource("2_d6j4h")
+
+[node name="FiestaTable3" type="Sprite2D" parent="."]
+position = Vector2(1952, 368)
+scale = Vector2(0.325, 0.47037)
+texture = ExtResource("2_d6j4h")
+
+[node name="Food" parent="." instance=ExtResource("3_d6j4h")]
+position = Vector2(256, 392)
+points = 220
+
+[node name="Sprite2D" type="Sprite2D" parent="Food"]
+position = Vector2(48, 32)
+scale = Vector2(3, 3)
+texture = ExtResource("4_ev10d")
+
+[node name="Food2" parent="." instance=ExtResource("3_d6j4h")]
+position = Vector2(768, 392)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Food2"]
+position = Vector2(48, 32)
+scale = Vector2(3, 3)
+texture = ExtResource("5_d6j4h")
+
+[node name="Food3" parent="." instance=ExtResource("3_d6j4h")]
+position = Vector2(1696, 392)
+points = 210
+
+[node name="Sprite2D2" type="Sprite2D" parent="Food3"]
+position = Vector2(48, 32)
+scale = Vector2(2.75, 3)
+texture = ExtResource("6_j647j")
+
+[node name="Food4" parent="." instance=ExtResource("3_d6j4h")]
+position = Vector2(2192, 392)
+points = 160
+
+[node name="Sprite2D2" type="Sprite2D" parent="Food4"]
+position = Vector2(56, 32)
+scale = Vector2(3, 3)
+texture = ExtResource("7_5e0dr")
