@@ -26,7 +26,7 @@ script = ExtResource("1_2i5ty")
 [node name="Map" parent="." instance=ExtResource("1_sklrn")]
 
 [node name="Player" parent="Map" groups=["player_dialogue_detection_group"] instance=ExtResource("2_d65c1")]
-position = Vector2(280, 445)
+position = Vector2(1456, 448)
 scale = Vector2(0.5, 0.5)
 
 [node name="Area2D2" type="Area2D" parent="Map/Player" groups=["player_dialogue_detection_group"]]

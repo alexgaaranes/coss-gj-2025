@@ -26,9 +26,9 @@ func _ready() -> void:
 	var npc3 = npc1_scene.instantiate()
 	var host_npc = host_npc_scene.instantiate()
 	
-	npc1.position = Vector2(-100, 395)
-	npc2.position = Vector2(500, 395)
-	npc3.position = Vector2(1200, 395)
+	npc1.position = Vector2(400, 395)
+	npc2.position = Vector2(1500, 395)
+	npc3.position = Vector2(2000, 395)
 	host_npc.position = Vector2(600, 460)
 	
 	# get the available sprite frames

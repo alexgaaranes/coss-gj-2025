@@ -39,7 +39,17 @@ func _physics_process(delta):
 	else:
 		sprite.play("Walk")
 	
-	position += velocity * delta 
+	var to_be_added = velocity * delta 
+	var hypo_position = position + velocity * delta 
+	print(hypo_position.x)
+	if hypo_position.x > 2528.0:
+		position.x += 0
+	else:
+		if hypo_position.x < 64:
+			position.x += 0
+		else:
+			position += velocity * delta 
+	print("current position: ", position.x)
 	
 func _on_has_failed_stealing_food():
 	GlobalSignals.emit_signal("send_player_location", self.position)
