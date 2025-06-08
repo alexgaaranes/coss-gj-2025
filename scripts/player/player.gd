@@ -41,8 +41,7 @@ func _physics_process(delta):
 	else:
 		sprite.play("Walk")
 	
-	var to_be_added = velocity * delta 
-	var hypo_position = position + velocity * delta 
+	var hypo_position = position + (velocity * delta) 
 	print(hypo_position.x)
 	if hypo_position.x > 2528.0:
 		position.x += 0
