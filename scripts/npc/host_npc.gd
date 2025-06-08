@@ -1,77 +1,80 @@
 extends CharacterBody2D
 
 enum State { IDLE, WALK, TURN, PURSUE, ANGRY }
+enum Direction { LEFT = -1, RIGHT = 1 }
 
-@export var SPEED: float = 50.0
+@export var SPEED: float = 150.0
 var MIN_DECISION_TIME: float = 0.5
 var MAX_DECISION_TIME: float = 2.0
 
 # Determines which direction facing
-var direction: int = 1  # 1 = left, -1 = right
+# 1 = right, -1 = left
+var direction: Direction = Direction.LEFT 
 
 # What current action is bro performing
 var current_state: State = State.IDLE
 
 # Cooldown for randomized actions
-@onready var timer: Timer = get_node("Timer")
-@onready var sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
-@onready var playerDetector: Area2D = get_node("PlayerDetector")
+@onready var timer: Timer = $Timer 
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var playerDetector: Area2D = $PlayerDetector
 
-# The position of the player when they fail the timing
 var target_position: Vector2 = Vector2.ZERO
 
-# Boolean switch logic
-var angry_timer_started: bool = false
+var angry_timer_started := false
 
 func _ready():
 	GlobalSignals.connect("send_player_location", self._on_send_player_location)
 	GlobalSignals.connect("is_stealing_food", self._on_is_stealing_food)
 
-	sprite.play("Idle")
-	sprite.flip_h = direction < 0
+	sprite.play("idle")
+	sprite.flip_h = direction != Direction.LEFT
 	randomize()
+	
+	timer.timeout.connect(self._on_timer_timeout_regular) 
+	
 	pick_random_behavior()
 
 func _process(delta):
 	match current_state:
 		State.ANGRY:
 			velocity.x = 0
-			sprite.play("Wait")
+			sprite.flip_h = direction != Direction.LEFT
+			sprite.play("catch")
 			if not angry_timer_started:
 				timer.start(3)
 				angry_timer_started = true
 		State.PURSUE:
-			sprite.play("Walk")
+			sprite.play("walk")
 			
-			# Go to place until you are there
 			var dir = (target_position - position).normalized()
 			velocity.x = dir.x * SPEED
 			
-			# Flip the dood
-			direction = 1 if dir.x > 0 else -1
-			sprite.flip_h = direction < 0
+			direction = Direction.RIGHT if dir.x > 0 else Direction.LEFT
+			sprite.flip_h = direction == Direction.LEFT
 			
-			# Bro is alr there, stop chasin
 			if position.distance_to(target_position) < 150:
 				velocity.x = 0
-				sprite.play("Idle")
+				sprite.play("idle")
+				sprite.flip_h = direction != Direction.LEFT
 				current_state = State.IDLE
 				timer.stop()
-				timer.start(0.5)
+				timer.start(0.5) 
 		State.IDLE:
-			sprite.play("Idle")
+			sprite.play("idle")
+			sprite.flip_h = direction != Direction.LEFT
 			velocity.x = 0
 		State.WALK:
-			sprite.play("Walk")
+			sprite.play("walk")
+			sprite.flip_h = direction == Direction.LEFT
 			velocity.x = direction * SPEED
 		State.TURN:
-			sprite.play("Idle")
+			sprite.play("idle")
 			velocity.x = 0
 			
 	move_and_slide()
 
 func pick_random_behavior():
-	# Only up to the 3
 	var choice = randi() % 3
 	current_state = choice
 	match current_state:
@@ -81,25 +84,19 @@ func pick_random_behavior():
 			pass
 		State.TURN:
 			direction *= -1
-			sprite.flip_h = direction < 0
+			sprite.flip_h = direction != Direction.LEFT
 			
-			# When turning, check if the newly turned
-			# direction has the player
-			var playerArea = get_player_in_detection_zone()
-			if playerArea:
-				evaluate_player_position(playerArea.position)
+			_on_is_stealing_food()
 	
 	var wait_time = randf_range(MIN_DECISION_TIME, MAX_DECISION_TIME)
 	timer.start(wait_time)
 
-# When timer gets timedout, reroll a new random action
-# If not pursuing
-func _on_timer_timeout() -> void:
-	if current_state != State.PURSUE:
+func _on_timer_timeout_regular() -> void:
+	# add if state is not angry
+	angry_timer_started = false
+	if current_state != State.PURSUE and current_state != State.ANGRY:
 		pick_random_behavior()
 
-# Checks if player is currently in vision
-# Returns the Area2D of the player
 func get_player_in_detection_zone() -> Area2D:
 	var areas = playerDetector.get_overlapping_areas()
 	for area in areas:
@@ -109,30 +106,56 @@ func get_player_in_detection_zone() -> Area2D:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().get_name() == "Player":
-		evaluate_player_position(area.position)
+		# add the angry condition
+		if current_state != State.ANGRY:
+			_on_is_stealing_food()
 
-# Boolean function to check if
-# Player is in front or not
 func evaluate_player_position(player_pos: Vector2) -> bool:
 	var areaDirection := (player_pos - self.position).normalized()
 	areaDirection.x = 1 if areaDirection.x > 0 else -1
-
+	
+	print("Player at: ", player_pos.x)
 	if areaDirection.x == direction:
 		return true
 	else:
 		return false
 
-# Listener for failed skill check signal
 func _on_send_player_location(data):
-	current_state = State.PURSUE;
-	target_position = data
+	if current_state != State.ANGRY:
+		current_state = State.PURSUE
+		target_position = data
 
-# Listener for skill check event
 func _on_is_stealing_food():
 	var isCaught = false
 	var playerArea = get_player_in_detection_zone()
-	if playerArea:
-		isCaught = evaluate_player_position(playerArea.position)
+	if !playerArea:
+		return
 		
+	var player = playerArea.get_parent()
+	
+	if !player:
+		return
+		
+	if playerArea and player.isStealing:
+		isCaught = evaluate_player_position(playerArea.get_parent().global_position)
+
 	if isCaught:
-		current_state = State.ANGRY
+		GlobalSignals.emit_signal("pan_camera", self.global_position)
+		print("Passing to: ", self.global_position.x)
+		GlobalSignals.del_timer()
+		current_state = State.ANGRY 
+		
+		timer.stop()
+		if timer.timeout.is_connected(self._on_timer_timeout_regular):
+			timer.timeout.disconnect(self._on_timer_timeout_regular)
+		
+		# call the after angry animation
+		timer.timeout.connect(self._on_angry_animation_finished_trigger_game_lost, CONNECT_ONE_SHOT)
+		timer.start(3) # can change this idk 3 secs seems good
+
+# calls this function to show the game over screen after the angry animation
+func _on_angry_animation_finished_trigger_game_lost() -> void:
+	GlobalSignals.game_lost()
+	
+	if not timer.timeout.is_connected(self._on_timer_timeout_regular):
+		timer.timeout.connect(self._on_timer_timeout_regular)

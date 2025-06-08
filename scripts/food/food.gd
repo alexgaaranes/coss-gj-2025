@@ -18,6 +18,7 @@ func _ready():
 	GlobalSignals.connect("is_stealing_food", self._on_stealing)
 	GlobalSignals.connect("is_finished_stealing_food", self._on_exit_stealing)
 	GlobalSignals.connect("has_failed_stealing_food", self._on_exit_stealing)
+	GlobalSignals.close_timer.connect(self._on_close_timer_triggered)
 
 func _process(delta):
 	if player != null and player.velocity != Vector2.ZERO:
@@ -38,11 +39,11 @@ func _process(delta):
 		is_overlapping = true	# only for this 
 
 func _on_area_2d_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
-	GlobalSignals.emit_signal("is_not_overlapping_food")
-	GlobalSignals.emit_signal("is_finished_stealing_food")
-	player = null
-	del_timer()
-	
+	if area.get_parent().name == "Player":
+		GlobalSignals.emit_signal("is_not_overlapping_food")
+		GlobalSignals.emit_signal("is_finished_stealing_food")
+		player = null
+		del_timer()
 
 # other functions
 func spawn_timer():
@@ -70,6 +71,14 @@ func _on_exit_stealing():
 	is_stealing = false
 
 func del_timer():
+	var timer = get_tree().root.get_node("Timer")
+	if timer != null: timer.queue_free()
+	is_overlapping = false
+	has_timer = false
+	
+func _on_close_timer_triggered() -> void:
+	GlobalSignals.emit_signal("has_failed_stealing_food")
+	is_overlapping = true	# only for this 
 	var timer = get_tree().root.get_node("Timer")
 	if timer != null: timer.queue_free()
 	is_overlapping = false
