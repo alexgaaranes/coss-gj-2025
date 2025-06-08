@@ -201,12 +201,14 @@ func game_lost() -> void:
 		#await get_tree().create_timer(1.0).timeout
 
 func _on_restart_button_pressed() -> void:
-	get_tree().paused = false
-	get_tree().reload_current_scene()
-
-func _on_return_button_pressed() -> void:
+	GlobalSounds.play_click()
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://levels/menu.tscn")
+
+func _on_return_button_pressed() -> void:
+	GlobalSounds.play_click()
+	get_tree().paused = false
+	get_tree().reload_current_scene()
 	
 func _on_successful_sharon(data: Dictionary) -> void:
 	add_points(data["points"])

@@ -132,6 +132,7 @@ func _on_is_stealing_food():
 	var isCaught = false
 	var playerArea = get_player_in_detection_zone()
 	if playerArea:
+		GlobalSignals.emit_signal("play_sound", "Caught")
 		isCaught = evaluate_player_position(playerArea.position)
 		
 	if isCaught:

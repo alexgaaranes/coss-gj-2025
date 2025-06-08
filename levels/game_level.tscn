@@ -23,8 +23,6 @@ glow_hdr_threshold = 1.5
 [node name="GameLevel" type="Node2D"]
 process_mode = 1
 
-[node name="SfxHandler" parent="." instance=ExtResource("1_wtvao")]
-
 [node name="Label" type="Label" parent="."]
 offset_left = 576.0
 offset_top = 40.0
@@ -47,6 +45,10 @@ scale = Vector2(7.2, 7.2)
 visible = false
 position = Vector2(-0.138885, -23.6111)
 shape = SubResource("RectangleShape2D_2i5ty")
+
+[node name="SfxHandler" parent="Map/Player" instance=ExtResource("1_wtvao")]
+position = Vector2(-89.1667, -93.4722)
+scale = Vector2(0.138889, 0.138889)
 
 [node name="Fiesta_CharacterBody2D#Area2D2" type="Area2D" parent="." groups=["player_dialogue_detection_group"]]
 visible = false
