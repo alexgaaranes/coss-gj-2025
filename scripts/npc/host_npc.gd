@@ -3,7 +3,7 @@ extends CharacterBody2D
 enum State { IDLE, WALK, TURN, PURSUE, ANGRY }
 enum Direction { LEFT = -1, RIGHT = 1 }
 
-@export var SPEED: float = 50.0
+@export var SPEED: float = 150.0
 var MIN_DECISION_TIME: float = 0.5
 var MAX_DECISION_TIME: float = 2.0
 
@@ -86,9 +86,7 @@ func pick_random_behavior():
 			direction *= -1
 			sprite.flip_h = direction != Direction.LEFT
 			
-			var playerArea = get_player_in_detection_zone()
-			if playerArea:
-				evaluate_player_position(playerArea.get_parent().global_position)
+			_on_is_stealing_food()
 	
 	var wait_time = randf_range(MIN_DECISION_TIME, MAX_DECISION_TIME)
 	timer.start(wait_time)
@@ -131,7 +129,8 @@ func _on_send_player_location(data):
 func _on_is_stealing_food():
 	var isCaught = false
 	var playerArea = get_player_in_detection_zone()
-	if playerArea:
+	var player = playerArea.get_parent()
+	if playerArea and player.isStealing:
 		isCaught = evaluate_player_position(playerArea.get_parent().global_position)
 
 	if isCaught:
