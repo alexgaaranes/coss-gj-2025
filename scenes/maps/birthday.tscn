@@ -33,6 +33,7 @@ texture = ExtResource("2_7s8dd")
 
 [node name="Food" parent="." instance=ExtResource("3_wpcu6")]
 position = Vector2(256, 392)
+points = 150
 
 [node name="Sprite2D" type="Sprite2D" parent="Food"]
 position = Vector2(48, 32)
@@ -41,6 +42,7 @@ texture = ExtResource("4_kstfd")
 
 [node name="Food2" parent="." instance=ExtResource("3_wpcu6")]
 position = Vector2(768, 392)
+points = 130
 
 [node name="Sprite2D2" type="Sprite2D" parent="Food2"]
 position = Vector2(48, 32)
@@ -49,6 +51,7 @@ texture = ExtResource("5_r06pa")
 
 [node name="Food3" parent="." instance=ExtResource("3_wpcu6")]
 position = Vector2(1696, 392)
+points = 145
 
 [node name="Sprite2D2" type="Sprite2D" parent="Food3"]
 position = Vector2(48, 32)
@@ -57,6 +60,7 @@ texture = ExtResource("6_k00e1")
 
 [node name="Food4" parent="." instance=ExtResource("3_wpcu6")]
 position = Vector2(2192, 392)
+points = 190
 
 [node name="Sprite2D2" type="Sprite2D" parent="Food4"]
 position = Vector2(56, 32)
