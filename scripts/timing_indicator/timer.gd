@@ -112,7 +112,7 @@ func _cancel_skill_check():
 
 # TODO: Dynamically add weight with food data
 func add_food_weight():
-	var player = get_tree().root.get_node("GameLevel").get_node("Map").get_node('Player')
+	var player = get_tree().root.get_node("GameLevel").get_node("Map2").get_node('Player')
 	player.add_food(food["weight"])
 	
 func set_food(food_stats: Dictionary):

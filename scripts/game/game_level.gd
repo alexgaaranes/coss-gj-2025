@@ -25,9 +25,9 @@ func _ready():
 
 func replace_map_scene(map_scene: Node2D, new_map_scene: Node2D, player: Node2D):
 	add_child(new_map_scene)
-
+	print("Player: ", player)
 	new_map_scene.add_child(player) 
-	
+	print("new map scene", new_map_scene)
 	new_map_scene.position = map_scene.position
 	new_map_scene.rotation = map_scene.rotation
 	new_map_scene.scale = map_scene.scale
