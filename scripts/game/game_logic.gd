@@ -220,7 +220,7 @@ func _on_return_button_pressed() -> void:
 	GlobalSounds.play_click()
 	get_tree().paused = false
 	get_tree().reload_current_scene()
-	
+
 func _on_successful_sharon(data: Dictionary) -> void:
 	add_points(data["points"])
 	add_weight(data["weight"])
