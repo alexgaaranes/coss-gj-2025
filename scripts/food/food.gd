@@ -39,11 +39,11 @@ func _process(delta):
 		is_overlapping = true	# only for this 
 
 func _on_area_2d_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
-	GlobalSignals.emit_signal("is_not_overlapping_food")
-	GlobalSignals.emit_signal("is_finished_stealing_food")
-	player = null
-	del_timer()
-	
+	if area.get_parent().name == "Player":
+		GlobalSignals.emit_signal("is_not_overlapping_food")
+		GlobalSignals.emit_signal("is_finished_stealing_food")
+		player = null
+		del_timer()
 
 # other functions
 func spawn_timer():

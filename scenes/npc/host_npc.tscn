@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://cwtdwaxpocaax" path="res://assets/npc_sprites/lola_frames.tres" id="2_60lok"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_60lok"]
-size = Vector2(1667, 733)
+size = Vector2(1024, 358)
 
 [node name="HostNpc" type="CharacterBody2D"]
 script = ExtResource("1_ff4tl")
@@ -18,7 +18,7 @@ animation = &"idle"
 [node name="PlayerDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2(-0.5, -6.5)
+position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_60lok")
 
 [node name="Timer" type="Timer" parent="."]
