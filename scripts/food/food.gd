@@ -17,6 +17,7 @@ func _ready():
 	GlobalSignals.connect("is_stealing_food", self._on_stealing)
 	GlobalSignals.connect("is_finished_stealing_food", self._on_exit_stealing)
 	GlobalSignals.connect("has_failed_stealing_food", self._on_exit_stealing)
+	GlobalSignals.connect("set_overlapping", self.set_overlapping)
 
 func _process(delta):
 	if player != null and player.velocity != Vector2.ZERO:
@@ -75,4 +76,5 @@ func del_timer():
 	has_timer = false
 
 func set_overlapping(boolean):
+	if player == null: return
 	is_overlapping = boolean

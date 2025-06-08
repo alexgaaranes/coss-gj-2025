@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://mhynfm7ul0n2"]
+[gd_scene load_steps=4 format=3 uid="uid://cf7v88iet7kr"]
 
 [ext_resource type="Script" uid="uid://cq0ktvbjmm6du" path="res://scripts/maps/birthday_parallax.gd" id="1_a5vsh"]
 [ext_resource type="Texture2D" uid="uid://2gji367yxrt2" path="res://assets/maps/birthday/birthday_background.png" id="1_dftqn"]

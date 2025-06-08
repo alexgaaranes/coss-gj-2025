@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://rtvvchmr32wa" path="res://scripts/food/food.gd" id="1_77ovl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_77ovl"]
-size = Vector2(192, 64)
+size = Vector2(96, 64)
 
 [node name="Food" type="Node2D"]
 script = ExtResource("1_77ovl")
@@ -11,13 +11,8 @@ script = ExtResource("1_77ovl")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(96, 32)
+position = Vector2(48, 32)
 shape = SubResource("RectangleShape2D_77ovl")
-
-[node name="ColorRect" type="ColorRect" parent="Area2D"]
-offset_right = 192.0
-offset_bottom = 64.0
-color = Color(0, 0.584314, 0.0666667, 1)
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_shape_exited" from="Area2D" to="." method="_on_area_2d_area_shape_exited"]

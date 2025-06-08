@@ -1,6 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://8mw1vt1fdd0j"]
+[gd_scene load_steps=9 format=3 uid="uid://co5mfw762f1gv"]
 
-[ext_resource type="PackedScene" uid="uid://dbkdj4n13kvps" path="res://scenes/maps/indoor_parallax.tscn" id="1_ulsyi"]
+[ext_resource type="PackedScene" uid="uid://bflnv1ar71d3l" path="res://scenes/maps/indoor_parallax.tscn" id="1_ulsyi"]
+[ext_resource type="Texture2D" uid="uid://da3eu6wovcmk2" path="res://assets/maps/interior/interior_table_elevated.png" id="2_bamm5"]
+[ext_resource type="PackedScene" uid="uid://cha2wnaqrkf7s" path="res://scenes/food/food.tscn" id="3_ev10d"]
+[ext_resource type="Texture2D" uid="uid://bn3kipyjh6j1i" path="res://assets/food/steak.png" id="4_d6j4h"]
+[ext_resource type="Texture2D" uid="uid://dh6xwcdtlae3b" path="res://assets/food/curry.png" id="5_ev10d"]
+[ext_resource type="Texture2D" uid="uid://l4picx4trl23" path="res://assets/food/sushi.png" id="6_ev10d"]
+[ext_resource type="Texture2D" uid="uid://sbtgwkb5f3v0" path="res://assets/food/sandwich.png" id="7_ev10d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bamm5"]
 size = Vector2(2560, 96)
@@ -14,3 +20,45 @@ position = Vector2(1280, 672)
 shape = SubResource("RectangleShape2D_bamm5")
 
 [node name="IndoorParallax" parent="." instance=ExtResource("1_ulsyi")]
+
+[node name="IndoorTable1" type="Sprite2D" parent="."]
+position = Vector2(632, 376)
+scale = Vector2(0.321, 0.46)
+texture = ExtResource("2_bamm5")
+
+[node name="IndoorTable2" type="Sprite2D" parent="."]
+position = Vector2(1912, 376)
+scale = Vector2(0.321, 0.46)
+texture = ExtResource("2_bamm5")
+
+[node name="Food1" parent="." instance=ExtResource("3_ev10d")]
+position = Vector2(232, 384)
+
+[node name="Sprite2D" type="Sprite2D" parent="Food1"]
+position = Vector2(48, 32)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("4_d6j4h")
+
+[node name="Food2" parent="." instance=ExtResource("3_ev10d")]
+position = Vector2(2024, 384)
+
+[node name="Sprite2D" type="Sprite2D" parent="Food2"]
+position = Vector2(48, 32)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("5_ev10d")
+
+[node name="Food3" parent="." instance=ExtResource("3_ev10d")]
+position = Vector2(1592, 392)
+
+[node name="Sprite2D" type="Sprite2D" parent="Food3"]
+position = Vector2(48, 24)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("6_ev10d")
+
+[node name="Food4" parent="." instance=ExtResource("3_ev10d")]
+position = Vector2(688, 384)
+
+[node name="Sprite2D" type="Sprite2D" parent="Food4"]
+position = Vector2(48, 32)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("7_ev10d")

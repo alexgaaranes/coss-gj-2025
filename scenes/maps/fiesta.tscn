@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhjygflt3q81y"]
+[gd_scene load_steps=9 format=3 uid="uid://bhjygflt3q81y"]
 
 [ext_resource type="PackedScene" uid="uid://bv4v3cna6l0ah" path="res://scenes/maps/fiesta_parallax.tscn" id="1_pecwr"]
-[ext_resource type="Texture2D" uid="uid://cutwkbrni3rpf" path="res://assets/maps/fiesta/fiesta_table.png" id="2_ijlj7"]
+[ext_resource type="Texture2D" uid="uid://da3eu6wovcmk2" path="res://assets/maps/interior/interior_table_elevated.png" id="2_ijlj7"]
+[ext_resource type="PackedScene" uid="uid://cha2wnaqrkf7s" path="res://scenes/food/food.tscn" id="3_1qety"]
+[ext_resource type="Texture2D" uid="uid://ca4xhpv74qcyc" path="res://assets/food/fries.png" id="4_mombr"]
+[ext_resource type="Texture2D" uid="uid://c7k2tb1c2n2p6" path="res://assets/food/chicken.png" id="5_58cd5"]
+[ext_resource type="Texture2D" uid="uid://d3qi3bpp3kk5h" path="res://assets/food/bacon.png" id="6_58cd5"]
+[ext_resource type="Texture2D" uid="uid://c10a748efetpt" path="res://assets/food/meatball.png" id="6_bihal"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x31xe"]
 size = Vector2(2560, 96)
@@ -16,7 +21,44 @@ shape = SubResource("RectangleShape2D_x31xe")
 
 [node name="FiestaParallax" parent="." instance=ExtResource("1_pecwr")]
 
-[node name="FiestaTable" type="Sprite2D" parent="."]
-position = Vector2(648, 371)
-scale = Vector2(0.325, 0.47037)
+[node name="FiestaTable1" type="Sprite2D" parent="."]
+position = Vector2(608, 376)
+scale = Vector2(0.320833, 0.460185)
 texture = ExtResource("2_ijlj7")
+
+[node name="FiestaTable2" type="Sprite2D" parent="."]
+position = Vector2(1928, 376)
+scale = Vector2(0.320833, 0.460185)
+texture = ExtResource("2_ijlj7")
+
+[node name="Food1" parent="." instance=ExtResource("3_1qety")]
+position = Vector2(232, 384)
+
+[node name="Sprite2D" type="Sprite2D" parent="Food1"]
+position = Vector2(48, 32)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("4_mombr")
+
+[node name="Food2" parent="." instance=ExtResource("3_1qety")]
+position = Vector2(2024, 384)
+
+[node name="Sprite2D" type="Sprite2D" parent="Food2"]
+position = Vector2(48, 32)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("5_58cd5")
+
+[node name="Food3" parent="." instance=ExtResource("3_1qety")]
+position = Vector2(1592, 392)
+
+[node name="Sprite2D" type="Sprite2D" parent="Food3"]
+position = Vector2(48, 24)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("6_58cd5")
+
+[node name="Food4" parent="." instance=ExtResource("3_1qety")]
+position = Vector2(688, 384)
+
+[node name="Sprite2D" type="Sprite2D" parent="Food4"]
+position = Vector2(48, 32)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("6_bihal")
