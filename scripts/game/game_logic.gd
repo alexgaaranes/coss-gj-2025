@@ -18,17 +18,20 @@ func _ready() -> void:
 	var npc1_scene = preload("res://scenes/npc/npc_followpath2d.tscn")
 	var npc2_scene = preload("res://scenes/npc/npc_followpath2d.tscn")
 	var npc3_scene = preload("res://scenes/npc/npc_followpath2d.tscn")
+	var npc4_scene = preload("res://scenes/npc/npc_followpath2d.tscn")
 	
 	var host_npc_scene = preload("res://scenes/npc/host_npc.tscn")
 	
 	var npc1 = npc1_scene.instantiate()
-	var npc2 = npc1_scene.instantiate()
-	var npc3 = npc1_scene.instantiate()
+	var npc2 = npc2_scene.instantiate()
+	var npc3 = npc3_scene.instantiate()
+	var npc4 = npc4_scene.instantiate()
 	var host_npc = host_npc_scene.instantiate()
 	
 	npc1.position = Vector2(400, 395)
-	npc2.position = Vector2(1500, 395)
-	npc3.position = Vector2(2000, 395)
+	npc2.position = Vector2(1000, 395)
+	npc3.position = Vector2(1600, 395)
+	npc4.position = Vector2(2000, 395)
 
 	host_npc.position = Vector2(600, 460)
 	
@@ -36,6 +39,7 @@ func _ready() -> void:
 	var available_sprite_frames: Array[SpriteFrames] = [
 		load("res://assets/npc_sprites/bata_frames.tres"),
 		load("res://assets/npc_sprites/lola_frames.tres"),
+		load("res://assets/npc_sprites/lolo_frames.tres"),
 		load("res://assets/npc_sprites/tita_frames.tres"),
 		load("res://assets/npc_sprites/tito_frames.tres")
 	]
@@ -45,13 +49,15 @@ func _ready() -> void:
 	var npc1_animated_sprite_node: AnimatedSprite2D = npc1.get_node("PathFollow2D/AnimatedSprite2D")
 	var npc2_animated_sprite_node: AnimatedSprite2D = npc2.get_node("PathFollow2D/AnimatedSprite2D") 
 	var npc3_animated_sprite_node: AnimatedSprite2D = npc3.get_node("PathFollow2D/AnimatedSprite2D") 
+	var npc4_animated_sprite_node: AnimatedSprite2D = npc4.get_node("PathFollow2D/AnimatedSprite2D") 
 	var host_animated_sprite_node: AnimatedSprite2D = host_npc.get_node("AnimatedSprite2D")
 	
 	# array of animatedsprite2d nodes
 	var npc_animated_sprites_nodes = [
 		npc1_animated_sprite_node,
 		npc2_animated_sprite_node,
-		npc3_animated_sprite_node
+		npc3_animated_sprite_node,
+		npc4_animated_sprite_node
 	]
 	
 	# assign each animatedsprite2d node with a random sprite frame
@@ -85,46 +91,70 @@ func _ready() -> void:
 		"Di halatang matanda, super lakas pa niya!",
 		"Lagi nalang siyang may discount sa lahat",
 		"Laging may dalang good vibes, parang kasabay ng kulay niya",
-		"Asawa siya ni Lolo!"
+		"Asawa siya ni lolo ^_^"
 	]
 	lola_dialogues.shuffle()
 	
+	var lolo_dialogues = [
+		"Parang cucumber ang suot niya HAHAHA",
+		"Need niya na tanggalin balbas niya",
+		"Wag mo siyang gagalitin, siya pinakamatanda",
+		"Asawa siya ni lola ^_^"
+	]
+	lolo_dialogues.shuffle()
+	
 	var tita_dialogues = [
 		"Uyyy single ba siya?",
-		"Kagandahan niya'y kahanga-hanga",
-		"Andito nanaman si marites"
+		"So pretty niya!",
+		"Andito nanaman si marites",
+		"Parang eggplant ang suot niya"
 	]
+	tita_dialogues.shuffle()
 	
 	var tito_dialogues = [
 		"Ang ganda ng ngiti parang Kpop idol",
-		"Para siyang nagcosplay ng eggplant",
+		"Uso pa pala magpakulay ng buhok",
 		"Napaka Gen Z ng suot niya kainis",
+		"Super pogi parang di galing sa sabungan"
 	]
+	tito_dialogues.shuffle()
+	
 	print("npc1 dialogue: ", npc1.get_node("PathFollow2D").npc_dialogue_text)
 	if available_sprite_frames == [load("res://assets/npc_sprites/bata_frames.tres")]:
 		npc1.get_node("PathFollow2D").npc_dialogue_text = bata_dialogues[0]
 		npc2.get_node("PathFollow2D").npc_dialogue_text = bata_dialogues[1]
 		npc3.get_node("PathFollow2D").npc_dialogue_text = bata_dialogues[2]
+		npc4.get_node("PathFollow2D").npc_dialogue_text = bata_dialogues[3]
 	if available_sprite_frames == [load("res://assets/npc_sprites/lola_frames.tres")]:
 		npc1.get_node("PathFollow2D").npc_dialogue_text = lola_dialogues[0]
 		npc2.get_node("PathFollow2D").npc_dialogue_text = lola_dialogues[1]
 		npc3.get_node("PathFollow2D").npc_dialogue_text = lola_dialogues[2]
+		npc4.get_node("PathFollow2D").npc_dialogue_text = lola_dialogues[3]
+	if available_sprite_frames == [load("res://assets/npc_sprites/lolo_frames.tres")]:
+		npc1.get_node("PathFollow2D").npc_dialogue_text = lolo_dialogues[0]
+		npc2.get_node("PathFollow2D").npc_dialogue_text = lolo_dialogues[1]
+		npc3.get_node("PathFollow2D").npc_dialogue_text = lolo_dialogues[2]
+		npc4.get_node("PathFollow2D").npc_dialogue_text = lolo_dialogues[3]
 	if available_sprite_frames == [load("res://assets/npc_sprites/tita_frames.tres")]:
 		npc1.get_node("PathFollow2D").npc_dialogue_text = tita_dialogues[0]
 		npc2.get_node("PathFollow2D").npc_dialogue_text = tita_dialogues[1]
 		npc3.get_node("PathFollow2D").npc_dialogue_text = tita_dialogues[2]
+		npc4.get_node("PathFollow2D").npc_dialogue_text = tita_dialogues[3]
 	if available_sprite_frames == [load("res://assets/npc_sprites/tito_frames.tres")]:
 		npc1.get_node("PathFollow2D").npc_dialogue_text = tito_dialogues[0]
 		npc2.get_node("PathFollow2D").npc_dialogue_text = tito_dialogues[1]
 		npc3.get_node("PathFollow2D").npc_dialogue_text = tito_dialogues[2]
+		npc4.get_node("PathFollow2D").npc_dialogue_text = tito_dialogues[3]
 	
-	var npc_arrs = [npc1, npc2, npc3]
+	var npc_arrs = [npc1, npc2, npc3, npc4]
 	
 	for npc in npc_arrs:
 		if npc.get_node("PathFollow2D/AnimatedSprite2D").sprite_frames == load("res://assets/npc_sprites/bata_frames.tres"):
 			npc.get_node("PathFollow2D/CharacterBody2D/NpcDialogue/MarginContainer").position = Vector2(-226.11, -112.0)
 		if npc.get_node("PathFollow2D/AnimatedSprite2D").sprite_frames == load("res://assets/npc_sprites/lola_frames.tres"):
-			npc.get_node("PathFollow2D/CharacterBody2D/NpcDialogue/MarginContainer").position = Vector2(-226.11, -272.0)
+			npc.get_node("PathFollow2D/CharacterBody2D/NpcDialogue/MarginContainer").position = Vector2(-226.11, -250.0)
+		if npc.get_node("PathFollow2D/AnimatedSprite2D").sprite_frames == load("res://assets/npc_sprites/lolo_frames.tres"):
+			npc.get_node("PathFollow2D/CharacterBody2D/NpcDialogue/MarginContainer").position = Vector2(-226.11, -260.0)
 		if npc.get_node("PathFollow2D/AnimatedSprite2D").sprite_frames == load("res://assets/npc_sprites/tita_frames.tres"):
 			npc.get_node("PathFollow2D/CharacterBody2D/NpcDialogue/MarginContainer").position = Vector2(-226.11,-226.11)
 		if npc.get_node("PathFollow2D/AnimatedSprite2D").sprite_frames == load("res://assets/npc_sprites/tito_frames.tres"):
@@ -132,6 +162,7 @@ func _ready() -> void:
 	add_child(npc1)
 	add_child(npc2)
 	add_child(npc3)
+	add_child(npc4)
 	add_child(host_npc)
 	
 	time_left = timer_countdown
