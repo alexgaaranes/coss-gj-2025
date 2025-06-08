@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dk58ddpvq84hl"]
+
+[ext_resource type="Script" uid="uid://ctv7ne8pslr3w" path="res://levels/credits_scrolling_border.gd" id="1_hvg48"]
+[ext_resource type="Texture2D" uid="uid://cvk06x5wn4qph" path="res://assets/ui/parallax_menu/credits_food_left.png" id="2_ru5v4"]
+[ext_resource type="Texture2D" uid="uid://blq86qbq3seh4" path="res://assets/ui/parallax_menu/credits_food_right.png" id="3_4ooxd"]
+
+[node name="CreditsParallax" type="ParallaxBackground"]
+script = ExtResource("1_hvg48")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+position = Vector2(632, 1600)
+motion_mirroring = Vector2(0, 1920)
+
+[node name="Left" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(-360, -640)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ru5v4")
+
+[node name="Right" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(376, -640)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_4ooxd")

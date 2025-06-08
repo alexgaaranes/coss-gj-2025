@@ -203,7 +203,7 @@ func _on_game_lost_triggered() -> void:
 	print("Game Over!")
 	hud.show_game_over() 
 	get_tree().paused = true
-	
+
 #uncomment this function for testing of winning condition
 #func test_points_sequence() -> void:
 	#var test_points = [0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000]
