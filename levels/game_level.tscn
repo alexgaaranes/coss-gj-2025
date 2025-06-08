@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://41dwkup4ipxm"]
+[gd_scene load_steps=9 format=3 uid="uid://41dwkup4ipxm"]
 
 [ext_resource type="Script" uid="uid://t8rnlq2nrvns" path="res://scripts/game/game_level.gd" id="1_2i5ty"]
 [ext_resource type="PackedScene" uid="uid://bhjygflt3q81y" path="res://scenes/maps/fiesta.tscn" id="1_sklrn"]
@@ -16,20 +16,11 @@ size = Vector2(128, 384)
 background_mode = 3
 glow_enabled = true
 glow_intensity = 0.3
-glow_bloom = 0.25
-glow_hdr_threshold = 1.96
+glow_bloom = 0.2
+glow_hdr_threshold = 0.86
 glow_hdr_luminance_cap = 9.8
 fog_enabled = true
 fog_light_energy = 0.0
-
-[sub_resource type="Gradient" id="Gradient_2i5ty"]
-offsets = PackedFloat32Array(0, 0.746753)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_wtvao"]
-gradient = SubResource("Gradient_2i5ty")
-fill = 1
-fill_from = Vector2(0.518349, 0.486239)
 
 [node name="GameLevel" type="Node2D"]
 process_mode = 1
@@ -67,8 +58,9 @@ offset_bottom = -27.0
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wtvao")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(640, 360)
-scale = Vector2(20, 11.25)
-color = Color(1, 1, 0.505882, 0.588235)
-texture = SubResource("GradientTexture2D_wtvao")
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+rotation = -0.127409
+color = Color(1, 1, 0.294118, 0.462745)
+energy = 0.2
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.752941)

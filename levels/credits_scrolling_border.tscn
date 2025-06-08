@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dk58ddpvq84hl"]
+[gd_scene load_steps=8 format=3 uid="uid://dk58ddpvq84hl"]
 
 [ext_resource type="Script" uid="uid://ctv7ne8pslr3w" path="res://levels/credits_scrolling_border.gd" id="1_hvg48"]
 [ext_resource type="Texture2D" uid="uid://cvk06x5wn4qph" path="res://assets/ui/parallax_menu/credits_food_left.png" id="2_ru5v4"]
+[ext_resource type="Texture2D" uid="uid://q7b3dliyooce" path="res://assets/ui/dev_logo.png" id="2_sc3hd"]
 [ext_resource type="Texture2D" uid="uid://blq86qbq3seh4" path="res://assets/ui/parallax_menu/credits_food_right.png" id="3_4ooxd"]
+[ext_resource type="Script" uid="uid://bd7812gyf8nff" path="res://levels/sprite_2d.gd" id="3_pmk5s"]
+[ext_resource type="Texture2D" uid="uid://c1834i7wtb8bi" path="res://assets/ui/title.png" id="4_pmk5s"]
+[ext_resource type="FontFile" uid="uid://c2qi3chw2ynge" path="res://assets/npc_sprites/VCR_OSD_MONO_1.001.ttf" id="4_ru5v4"]
 
 [node name="CreditsParallax" type="ParallaxBackground"]
 script = ExtResource("1_hvg48")
@@ -10,6 +14,17 @@ script = ExtResource("1_hvg48")
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 position = Vector2(632, 1600)
 motion_mirroring = Vector2(0, 1920)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(9.53674e-07, -1112)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_sc3hd")
+script = ExtResource("3_pmk5s")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(16, -1440)
+scale = Vector2(0.63, 0.63)
+texture = ExtResource("4_pmk5s")
 
 [node name="Left" type="Sprite2D" parent="ParallaxLayer"]
 position = Vector2(-360, -640)
@@ -20,3 +35,75 @@ texture = ExtResource("2_ru5v4")
 position = Vector2(376, -640)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_4ooxd")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ParallaxLayer"]
+offset_left = -184.0
+offset_top = -920.0
+offset_right = 200.0
+offset_bottom = -486.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_ru5v4")
+theme_override_font_sizes/normal_font_size = 35
+text = "Game Programmers:
+
+jimikhail
+loopsidoop
+a5ti
+Rednuerocs
+
+
+Art and Design:
+
+jnmx
+yanaeiouuuu
+MoonSky20
+dhbgarcia"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="ParallaxLayer"]
+offset_left = -200.0
+offset_top = -1248.0
+offset_right = 184.0
+offset_bottom = -1208.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_ru5v4")
+theme_override_font_sizes/normal_font_size = 35
+text = "by"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="ParallaxLayer"]
+offset_left = -200.0
+offset_top = 152.0
+offset_right = 184.0
+offset_bottom = 192.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_ru5v4")
+theme_override_font_sizes/normal_font_size = 35
+text = "© 2025 Playgaraw"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="ParallaxLayer"]
+offset_left = -328.0
+offset_top = -400.0
+offset_right = 376.0
+offset_bottom = 127.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_ru5v4")
+theme_override_font_sizes/normal_font_size = 35
+text = "Other Assets used:
+
+https://fmpixellence.itch.io/food
+
+https://rianez3.itch.io/indonesian-food
+
+https://crumpaloo.itch.io/free-cake-asset-pack-32x329pack
+
+https://crumpaloo.itch.io/free-frozen-treats-pack
+
+https://ghostpixxells.itch.io/pixelfood
+"
+fit_content = true
+horizontal_alignment = 1

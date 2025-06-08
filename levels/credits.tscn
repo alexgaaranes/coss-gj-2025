@@ -1,10 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://h3ofaw3c1he3"]
+[gd_scene load_steps=5 format=3 uid="uid://h3ofaw3c1he3"]
 
 [ext_resource type="Script" uid="uid://cu16vgkk5t8qj" path="res://levels/credits.gd" id="1_2ox7f"]
 [ext_resource type="PackedScene" uid="uid://bg6dqo3jgsd58" path="res://levels/menu_parallax.tscn" id="1_oat60"]
-[ext_resource type="Texture2D" uid="uid://q7b3dliyooce" path="res://assets/ui/dev_logo.png" id="2_i2oue"]
-[ext_resource type="FontFile" uid="uid://c2qi3chw2ynge" path="res://assets/npc_sprites/VCR_OSD_MONO_1.001.ttf" id="3_pohcg"]
-[ext_resource type="Script" uid="uid://bd7812gyf8nff" path="res://levels/sprite_2d.gd" id="3_xkp5n"]
 [ext_resource type="Texture2D" uid="uid://beywhlghcdj8p" path="res://assets/ui/buttons/back_button.png" id="6_2ox7f"]
 [ext_resource type="PackedScene" uid="uid://dk58ddpvq84hl" path="res://levels/credits_scrolling_border.tscn" id="7_0k2vd"]
 
@@ -16,31 +13,6 @@ offset_bottom = 40.0
 script = ExtResource("1_2ox7f")
 
 [node name="MenuParallax" parent="." instance=ExtResource("1_oat60")]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(648, 160)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_i2oue")
-script = ExtResource("3_xkp5n")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 496.0
-offset_top = 368.0
-offset_right = 752.0
-offset_bottom = 704.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("3_pohcg")
-theme_override_font_sizes/normal_font_size = 35
-text = "loopsidoop
-jnmx
-jimikhail
-a5ti
-Rednuerocs
-yanaeiouuuu
-MoonSky20"
-fit_content = true
-horizontal_alignment = 1
 
 [node name="BackButton" type="TextureButton" parent="."]
 layout_mode = 0
