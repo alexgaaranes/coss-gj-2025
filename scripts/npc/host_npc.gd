@@ -96,7 +96,7 @@ func get_player_in_detection_zone() -> Area2D:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().get_name() == "Player":
-		# Only evaluate if not already angry or pursuing
+		# add the angry condition
 		if current_state != State.ANGRY and current_state != State.PURSUE:
 			evaluate_player_position(area.position)
 
@@ -130,8 +130,7 @@ func _on_is_stealing_food():
 		
 		# call the after angry animation
 		timer.timeout.connect(self._on_angry_animation_finished_trigger_game_lost, CONNECT_ONE_SHOT)
-		timer.start(3) 
-
+		timer.start(3) # can change this idk 3 secs seems good
 
 # calls this function to show the game over screen after the angry animation
 func _on_angry_animation_finished_trigger_game_lost() -> void:
