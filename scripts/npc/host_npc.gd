@@ -7,7 +7,8 @@ var MIN_DECISION_TIME: float = 0.5
 var MAX_DECISION_TIME: float = 2.0
 
 # Determines which direction facing
-var direction: int = 1  # 1 = left, -1 = right
+# 1 = right, -1 = left
+var direction: int = 1
 
 # What current action is bro performing
 var current_state: State = State.IDLE
@@ -36,6 +37,7 @@ func _process(delta):
 	match current_state:
 		State.ANGRY:
 			velocity.x = 0
+			sprite.flip_h = direction < 0
 			sprite.play("catch")
 			if not angry_timer_started:
 				timer.start(3)
@@ -87,7 +89,7 @@ func pick_random_behavior():
 			# direction has the player
 			var playerArea = get_player_in_detection_zone()
 			if playerArea:
-				evaluate_player_position(playerArea.position)
+				evaluate_player_position(playerArea.get_parent().global_position)
 	
 	var wait_time = randf_range(MIN_DECISION_TIME, MAX_DECISION_TIME)
 	timer.start(wait_time)
@@ -95,6 +97,7 @@ func pick_random_behavior():
 # When timer gets timedout, reroll a new random action
 # If not pursuing
 func _on_timer_timeout() -> void:
+	angry_timer_started = false
 	if current_state != State.PURSUE:
 		pick_random_behavior()
 
@@ -109,18 +112,21 @@ func get_player_in_detection_zone() -> Area2D:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().get_name() == "Player":
-		evaluate_player_position(area.position)
+		print("Found player")
+		evaluate_player_position(area.get_parent().global_position)
 
 # Boolean function to check if
 # Player is in front or not
 func evaluate_player_position(player_pos: Vector2) -> bool:
 	var areaDirection := (player_pos - self.position).normalized()
-	areaDirection.x = 1 if areaDirection.x > 0 else -1
+	areaDirection.x = 1 if areaDirection.x < 0 else -1
 	
+	print("Player at: ", player_pos.x)
 	if areaDirection.x == direction:
-		sprite.flip_h = direction < 0
+		print("Front")
 		return true
 	else:
+		print("Behind")
 		return false
 
 # Listener for failed skill check signal
@@ -133,7 +139,8 @@ func _on_is_stealing_food():
 	var isCaught = false
 	var playerArea = get_player_in_detection_zone()
 	if playerArea:
-		isCaught = evaluate_player_position(playerArea.position)
+		isCaught = evaluate_player_position(playerArea.get_parent().global_position)
 		
 	if isCaught:
+		print("Caught!")
 		current_state = State.ANGRY

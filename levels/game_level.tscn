@@ -34,6 +34,9 @@ text = "game level scene"
 [node name="Food" parent="." instance=ExtResource("1_d65c1")]
 position = Vector2(168, 360)
 
+[node name="Food2" parent="." instance=ExtResource("1_d65c1")]
+position = Vector2(1202, 392)
+
 [node name="Map" parent="." instance=ExtResource("1_sklrn")]
 
 [node name="Player" parent="Map" groups=["player_dialogue_detection_group"] instance=ExtResource("2_d65c1")]
