@@ -43,12 +43,21 @@ func _start_movement():
 	tween.tween_property(arrow, "position:x", start_pos, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 func skill_check() -> bool:
-	var arrow_pos = arrow.position.x
-	var zone_pos = zone.position.x
-	var zone_width = zone.size.x # replace with zone.get_size().x when replaced with sprite
+	var arrow_size = arrow.texture.get_size() * arrow.scale
+	var arrow_rect = Rect2(
+		arrow.position,
+		arrow_size
+	)
 
-	return arrow_pos >= zone_pos and arrow_pos <= zone_pos + zone_width
+	var zone_size = zone.size * zone.scale
+	var zone_rect = Rect2(
+		zone.position,
+		zone_size
+	)
 
+	return arrow_rect.intersects(zone_rect)
+
+	return arrow_rect.intersects(zone_rect)
 func _input(event):
 	if not is_active:
 		return
@@ -108,3 +117,7 @@ func add_food_weight():
 	
 func set_food(food_stats: Dictionary):
 	food = food_stats
+	
+func _process(delta):
+	if is_active:
+		bar_bg.modulate = Color.GREEN if skill_check() else Color.RED

@@ -9,9 +9,10 @@ var player = null
 @export var weight := 10
 
 func _on_area_2d_area_entered(area):
-	player = area.get_parent()
-	GlobalSignals.emit_signal("is_overlapping_food")
-	is_overlapping = true
+	if area.get_parent().name == "Player":
+		player = area.get_parent()
+		GlobalSignals.emit_signal("is_overlapping_food")
+		is_overlapping = true
 
 func _ready():
 	GlobalSignals.connect("is_stealing_food", self._on_stealing)
