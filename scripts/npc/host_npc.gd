@@ -27,7 +27,7 @@ func _ready():
 	GlobalSignals.connect("send_player_location", self._on_send_player_location)
 	GlobalSignals.connect("is_stealing_food", self._on_is_stealing_food)
 
-	sprite.play("Idle")
+	sprite.play("idle")
 	sprite.flip_h = direction < 0
 	randomize()
 	pick_random_behavior()
@@ -36,12 +36,12 @@ func _process(delta):
 	match current_state:
 		State.ANGRY:
 			velocity.x = 0
-			sprite.play("Wait")
+			sprite.play("catch")
 			if not angry_timer_started:
 				timer.start(3)
 				angry_timer_started = true
 		State.PURSUE:
-			sprite.play("Walk")
+			sprite.play("walk")
 			
 			# Go to place until you are there
 			var dir = (target_position - position).normalized()
@@ -54,18 +54,18 @@ func _process(delta):
 			# Bro is alr there, stop chasin
 			if position.distance_to(target_position) < 150:
 				velocity.x = 0
-				sprite.play("Idle")
+				sprite.play("idle")
 				current_state = State.IDLE
 				timer.stop()
 				timer.start(0.5)
 		State.IDLE:
-			sprite.play("Idle")
+			sprite.play("idle")
 			velocity.x = 0
 		State.WALK:
-			sprite.play("Walk")
+			sprite.play("walk")
 			velocity.x = direction * SPEED
 		State.TURN:
-			sprite.play("Idle")
+			sprite.play("idle")
 			velocity.x = 0
 			
 	move_and_slide()
@@ -116,8 +116,9 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 func evaluate_player_position(player_pos: Vector2) -> bool:
 	var areaDirection := (player_pos - self.position).normalized()
 	areaDirection.x = 1 if areaDirection.x > 0 else -1
-
+	
 	if areaDirection.x == direction:
+		sprite.flip_h = direction < 0
 		return true
 	else:
 		return false
