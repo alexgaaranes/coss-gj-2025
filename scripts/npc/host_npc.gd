@@ -7,7 +7,8 @@ var MIN_DECISION_TIME: float = 0.5
 var MAX_DECISION_TIME: float = 2.0
 
 # Determines which direction facing
-var direction: int = 1 
+# 1 = right, -1 = left
+var direction: int = 1
 
 # What current action is bro performing
 var current_state: State = State.IDLE
@@ -19,11 +20,13 @@ var current_state: State = State.IDLE
 
 var target_position: Vector2 = Vector2.ZERO
 
+var angry_timer_started := false
+
 func _ready():
 	GlobalSignals.connect("send_player_location", self._on_send_player_location)
 	GlobalSignals.connect("is_stealing_food", self._on_is_stealing_food)
 
-	sprite.play("Idle")
+	sprite.play("idle")
 	sprite.flip_h = direction < 0
 	randomize()
 	
@@ -35,9 +38,13 @@ func _process(delta):
 	match current_state:
 		State.ANGRY:
 			velocity.x = 0
-			sprite.play("Wait") 
+			sprite.flip_h = direction < 0
+			sprite.play("catch")
+			if not angry_timer_started:
+				timer.start(3)
+				angry_timer_started = true
 		State.PURSUE:
-			sprite.play("Walk")
+			sprite.play("walk")
 			
 			var dir = (target_position - position).normalized()
 			velocity.x = dir.x * SPEED
@@ -47,18 +54,18 @@ func _process(delta):
 			
 			if position.distance_to(target_position) < 150:
 				velocity.x = 0
-				sprite.play("Idle")
+				sprite.play("idle")
 				current_state = State.IDLE
 				timer.stop()
 				timer.start(0.5) 
 		State.IDLE:
-			sprite.play("Idle")
+			sprite.play("idle")
 			velocity.x = 0
 		State.WALK:
-			sprite.play("Walk")
+			sprite.play("walk")
 			velocity.x = direction * SPEED
 		State.TURN:
-			sprite.play("Idle")
+			sprite.play("idle")
 			velocity.x = 0
 			
 	move_and_slide()
@@ -77,13 +84,14 @@ func pick_random_behavior():
 			
 			var playerArea = get_player_in_detection_zone()
 			if playerArea:
-				evaluate_player_position(playerArea.position)
+				evaluate_player_position(playerArea.get_parent().global_position)
 	
 	var wait_time = randf_range(MIN_DECISION_TIME, MAX_DECISION_TIME)
 	timer.start(wait_time)
 
 func _on_timer_timeout_regular() -> void:
 	# add if state is not angry
+	angry_timer_started = false
 	if current_state != State.PURSUE and current_state != State.ANGRY:
 		pick_random_behavior()
 
@@ -98,15 +106,19 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent().get_name() == "Player":
 		# add the angry condition
 		if current_state != State.ANGRY and current_state != State.PURSUE:
-			evaluate_player_position(area.position)
+			print("Found player")
+			evaluate_player_position(area.get_parent().global_position)
 
 func evaluate_player_position(player_pos: Vector2) -> bool:
 	var areaDirection := (player_pos - self.position).normalized()
-	areaDirection.x = 1 if areaDirection.x > 0 else -1
-
+	areaDirection.x = 1 if areaDirection.x < 0 else -1
+	
+	print("Player at: ", player_pos.x)
 	if areaDirection.x == direction:
+		print("Front")
 		return true
 	else:
+		print("Behind")
 		return false
 
 func _on_send_player_location(data):
@@ -118,10 +130,11 @@ func _on_is_stealing_food():
 	var isCaught = false
 	var playerArea = get_player_in_detection_zone()
 	if playerArea:
-		isCaught = evaluate_player_position(playerArea.position)
+		isCaught = evaluate_player_position(playerArea.get_parent().global_position)
 
 	if isCaught:
 		GlobalSignals.del_timer()
+		print("Caught!")
 		current_state = State.ANGRY 
 		
 		timer.stop()

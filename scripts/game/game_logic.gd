@@ -5,16 +5,11 @@ extends Node
 
 @export var timer_countdown := 120 #TODO: replace this with actual time limit, this is for testing only
 
-
-
-
 var points: int = 0
 var time_left: float = 0.0
 var game_over: bool = false
 var capacity: float = 0.0
 var max_capacity: float = 100.0
-
-
 
 @onready var hud := $HUD
 
@@ -24,13 +19,17 @@ func _ready() -> void:
 	var npc2_scene = preload("res://scenes/npc/npc_followpath2d.tscn")
 	var npc3_scene = preload("res://scenes/npc/npc_followpath2d.tscn")
 	
+	var host_npc_scene = preload("res://scenes/npc/host_npc.tscn")
+	
 	var npc1 = npc1_scene.instantiate()
 	var npc2 = npc1_scene.instantiate()
 	var npc3 = npc1_scene.instantiate()
+	var host_npc = host_npc_scene.instantiate()
 	
-	npc1.position = Vector2(-100, 375)
-	npc2.position = Vector2(500, 375)
-	npc3.position = Vector2(1200, 375)
+	npc1.position = Vector2(-100, 395)
+	npc2.position = Vector2(500, 395)
+	npc3.position = Vector2(1200, 395)
+	host_npc.position = Vector2(600, 460)
 	
 	# get the available sprite frames
 	var available_sprite_frames: Array[SpriteFrames] = [
@@ -45,6 +44,7 @@ func _ready() -> void:
 	var npc1_animated_sprite_node: AnimatedSprite2D = npc1.get_node("PathFollow2D/AnimatedSprite2D")
 	var npc2_animated_sprite_node: AnimatedSprite2D = npc2.get_node("PathFollow2D/AnimatedSprite2D") 
 	var npc3_animated_sprite_node: AnimatedSprite2D = npc3.get_node("PathFollow2D/AnimatedSprite2D") 
+	var host_animated_sprite_node: AnimatedSprite2D = host_npc.get_node("AnimatedSprite2D")
 	
 	# array of animatedsprite2d nodes
 	var npc_animated_sprites_nodes = [
@@ -67,6 +67,9 @@ func _ready() -> void:
 			print("invalid frames")
 	
 	print(available_sprite_frames)
+	
+	host_animated_sprite_node.sprite_frames = available_sprite_frames[0]
+	host_animated_sprite_node.play("idle")
 	
 	# all dialogues
 	var bata_dialogues = [
@@ -125,10 +128,10 @@ func _ready() -> void:
 			npc.get_node("PathFollow2D/CharacterBody2D/NpcDialogue/MarginContainer").position = Vector2(-226.11,-226.11)
 		if npc.get_node("PathFollow2D/AnimatedSprite2D").sprite_frames == load("res://assets/npc_sprites/tito_frames.tres"):
 			npc.get_node("PathFollow2D/CharacterBody2D/NpcDialogue/MarginContainer").position = Vector2(-226.11, -232.0)
-	
 	add_child(npc1)
 	add_child(npc2)
 	add_child(npc3)
+	add_child(host_npc)
 	
 	time_left = timer_countdown
 	points = 0

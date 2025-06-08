@@ -170,7 +170,6 @@ animation = &"tsismis"
 [node name="CharacterBody2D" type="CharacterBody2D" parent="PathFollow2D"]
 
 [node name="NpcDialogue" parent="PathFollow2D/CharacterBody2D" instance=ExtResource("2_gleis")]
-anchors_preset = 15
 offset_right = 0.0
 offset_bottom = 0.0
 
