@@ -19,7 +19,6 @@ func _ready():
 	GlobalSignals.connect("is_finished_stealing_food", self._on_exit_stealing)
 	GlobalSignals.connect("has_failed_stealing_food", self._on_exit_stealing)
 	GlobalSignals.connect("set_overlapping", self.set_overlapping)
-
 	GlobalSignals.close_timer.connect(self._on_close_timer_triggered)
 
 func _process(delta):

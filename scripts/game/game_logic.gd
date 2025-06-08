@@ -29,6 +29,7 @@ func _ready() -> void:
 	npc1.position = Vector2(400, 395)
 	npc2.position = Vector2(1500, 395)
 	npc3.position = Vector2(2000, 395)
+
 	host_npc.position = Vector2(600, 460)
 	
 	# get the available sprite frames
@@ -220,7 +221,7 @@ func _on_return_button_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://levels/menu.tscn")
 	GlobalSounds.on_back_to_menu_pressed()
-
+	
 func _on_successful_sharon(data: Dictionary) -> void:
 	add_points(data["points"])
 	add_weight(data["weight"])

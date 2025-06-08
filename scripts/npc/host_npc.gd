@@ -9,7 +9,6 @@ var MAX_DECISION_TIME: float = 2.0
 
 # Determines which direction facing
 # 1 = right, -1 = left
-
 var direction: Direction = Direction.LEFT 
 
 # What current action is bro performing
@@ -29,7 +28,6 @@ func _ready():
 	GlobalSignals.connect("is_stealing_food", self._on_is_stealing_food)
 
 	sprite.play("idle")
-
 	sprite.flip_h = direction != Direction.LEFT
 	randomize()
 	
@@ -71,8 +69,6 @@ func _process(delta):
 		State.WALK:
 			sprite.play("walk")
 			sprite.flip_h = direction == Direction.LEFT
-			
-			
 			var hypo_po = position.x + (direction * SPEED)
 			print("hypo pos: ", hypo_po)
 			if hypo_po > 2700:
@@ -86,6 +82,7 @@ func _process(delta):
 					return
 				else:
 					velocity.x = direction * SPEED
+
 		State.TURN:
 			sprite.play("idle")
 			velocity.x = 0
@@ -148,7 +145,6 @@ func _on_send_player_location(data):
 func _on_is_stealing_food():
 	var isCaught = false
 	var playerArea = get_player_in_detection_zone()
-
 	if !playerArea:
 		return
 		

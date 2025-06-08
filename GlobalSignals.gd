@@ -29,5 +29,4 @@ signal play_step
 # Global signals for game over and closing the timer indicator
 signal game_lost_triggered
 signal close_timer
-
 signal pan_camera
