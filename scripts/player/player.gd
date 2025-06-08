@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var speed := 300.0
+@export var speed := 280.0
 @export var weight := 1.0
 @export var max_capacity := 100.0
 @export var current_capacity := 1.0
