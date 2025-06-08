@@ -122,7 +122,6 @@ script = ExtResource("1_ff4tl")
 position = Vector2(0, -23)
 sprite_frames = SubResource("SpriteFrames_mgiyf")
 animation = &"Wait"
-frame_progress = 0.455231
 
 [node name="PlayerDetector" type="Area2D" parent="."]
 

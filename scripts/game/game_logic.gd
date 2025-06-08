@@ -3,7 +3,7 @@ extends Node
 @export var max_points := 5000 #TODO: placeholder values only
 @export var points_per_tupperware := 1000 #TODO: placeholder values only
 
-@export var timer_countdown := 60 #TODO: replace this with actual time limit, this is for testing only
+@export var timer_countdown := 120 #TODO: replace this with actual time limit, this is for testing only
 
 
 
@@ -134,6 +134,8 @@ func _ready() -> void:
 	points = 0
 	game_over = false
 	
+	GlobalSignals.game_lost_triggered.connect(self._on_game_lost_triggered)
+	
 	GlobalSignals.connect("has_successfully_sharon", self._on_successful_sharon)
 	
 	hud.hide_all_status_panels()
@@ -187,6 +189,12 @@ func game_won() -> void:
 	get_tree().paused = true
 
 func game_lost() -> void:
+	game_over = true
+	print("Game Over!")
+	hud.show_game_over() 
+	get_tree().paused = true
+
+func _on_game_lost_triggered() -> void:
 	game_over = true
 	print("Game Over!")
 	hud.show_game_over() 
