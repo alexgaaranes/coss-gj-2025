@@ -360,7 +360,7 @@ alignment = 1
 process_mode = 3
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-texture_normal = ExtResource("8_x4j3j")
+texture_normal = ExtResource("9_q3bp0")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -368,7 +368,7 @@ stretch_mode = 5
 process_mode = 3
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-texture_normal = ExtResource("9_q3bp0")
+texture_normal = ExtResource("8_x4j3j")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -407,7 +407,7 @@ alignment = 1
 process_mode = 3
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-texture_normal = ExtResource("8_x4j3j")
+texture_normal = ExtResource("9_q3bp0")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -415,7 +415,7 @@ stretch_mode = 5
 process_mode = 3
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-texture_normal = ExtResource("9_q3bp0")
+texture_normal = ExtResource("8_x4j3j")
 ignore_texture_size = true
 stretch_mode = 5
 
