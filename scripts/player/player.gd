@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var speed := 200.0
+@export var speed := 300.0
 @export var weight := 1.0
 @export var max_capacity := 100.0
 @export var current_capacity := 1.0
@@ -42,7 +42,6 @@ func _physics_process(delta):
 		sprite.play("Walk")
 	
 	var hypo_position = position + (velocity * delta) 
-	print(hypo_position.x)
 	if hypo_position.x > 2528.0:
 		position.x += 0
 	else:
@@ -50,7 +49,6 @@ func _physics_process(delta):
 			position.x += 0
 		else:
 			position += velocity * delta 
-	print("current position: ", position.x)
 	
 func _on_has_failed_stealing_food():
 	GlobalSignals.emit_signal("send_player_location", self.position)
@@ -63,4 +61,4 @@ func _on_is_finished_stealing_food():
 
 func add_food(capacity):
 	current_capacity += capacity
-	weight = (current_capacity / max_capacity) * 10
+	weight = 1 + (current_capacity / max_capacity / 2.5)

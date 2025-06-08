@@ -176,7 +176,6 @@ func add_points(amount: int) -> void:
 func add_weight(amount: float) -> void:
 	if game_over:
 		return
-		
 	capacity = clamp(capacity + amount, 0, max_capacity)
 	hud.update_inventory(capacity)
 

@@ -6,7 +6,7 @@ var is_stealing = false
 var player = null
 
 @export var points := 100
-@export var weight := 10
+@export var weight := 2.5
 
 func _on_area_2d_area_entered(area):
 	if area.get_parent().name == "Player":

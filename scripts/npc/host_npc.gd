@@ -70,7 +70,6 @@ func _process(delta):
 			sprite.play("walk")
 			sprite.flip_h = direction == Direction.LEFT
 			var hypo_po = position.x + (direction * SPEED)
-			print("hypo pos: ", hypo_po)
 			if hypo_po > 2700:
 				velocity.x = 0
 				pick_random_behavior()
