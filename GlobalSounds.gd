@@ -51,8 +51,11 @@ func play_lose_music():
 
 func on_restart_pressed():
 	play_click()
+	endscreen_player.stop()
+	play_bgm(bgm_stream)
 
 
 func on_back_to_menu_pressed():
 	play_click()
+	endscreen_player.stop()
 	play_bgm(bgm_stream)
