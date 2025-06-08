@@ -6,6 +6,7 @@ signal has_successfully_sharon
 signal send_player_location
 signal is_stealing_food
 signal is_finished_stealing_food
+signal set_overlapping
 
 signal is_overlapping_food
 signal is_not_overlapping_food

@@ -99,7 +99,7 @@ func _on_feedback_finished():
 	bar.scale = Vector2(1, 1) # reset scale just in case
 	
 	get_parent().queue_free()
-	get_tree().root.get_node("GameLevel").get_node("Food").set_overlapping(true)
+	GlobalSignals.emit_signal("set_overlapping", true)
 
 func _cancel_skill_check():
 	if tween:

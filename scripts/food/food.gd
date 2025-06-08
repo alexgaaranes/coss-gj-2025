@@ -86,4 +86,5 @@ func _on_close_timer_triggered() -> void:
 	has_timer = false
 
 func set_overlapping(boolean):
+	if player == null: return
 	is_overlapping = boolean
