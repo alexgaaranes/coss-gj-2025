@@ -9,10 +9,14 @@ func _ready():
 		new_map_scene = preload("res://scenes/maps/indoor.tscn")
 	else:
 		return
-	replace_map_scene($Map, new_map_scene.instantiate())
+	var map_scene = new_map_scene.instantiate()
+	replace_map_scene($Map, map_scene)
 
 func replace_map_scene(map_scene: Node2D, new_map_scene: Node2D):
 	map_scene.replace_by(new_map_scene, true)
+	print(map_scene)
+	print(new_map_scene)
+	print(get_children())
 	
 	new_map_scene.position = map_scene.position
 	new_map_scene.rotation = map_scene.rotation

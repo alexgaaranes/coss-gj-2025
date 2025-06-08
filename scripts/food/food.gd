@@ -9,15 +9,17 @@ var player = null
 @export var weight := 10
 
 func _on_area_2d_area_entered(area):
-	player = area.get_parent()
-	GlobalSignals.emit_signal("is_overlapping_food")
-	is_overlapping = true
+	if area.get_parent().name == "Player":
+		player = area.get_parent()
+		GlobalSignals.emit_signal("is_overlapping_food")
+		is_overlapping = true
 
 func _ready():
 	GlobalSignals.connect("is_stealing_food", self._on_stealing)
 	GlobalSignals.connect("is_finished_stealing_food", self._on_exit_stealing)
 	GlobalSignals.connect("has_failed_stealing_food", self._on_exit_stealing)
 	GlobalSignals.connect("set_overlapping", self.set_overlapping)
+	GlobalSignals.close_timer.connect(self._on_close_timer_triggered)
 
 func _process(delta):
 	if player != null and player.velocity != Vector2.ZERO:
@@ -74,7 +76,14 @@ func del_timer():
 	if timer != null: timer.queue_free()
 	is_overlapping = false
 	has_timer = false
+	
+func _on_close_timer_triggered() -> void:
+	GlobalSignals.emit_signal("has_failed_stealing_food")
+	is_overlapping = true	# only for this 
+	var timer = get_tree().root.get_node("Timer")
+	if timer != null: timer.queue_free()
+	is_overlapping = false
+	has_timer = false
 
 func set_overlapping(boolean):
-	if player == null: return
 	is_overlapping = boolean

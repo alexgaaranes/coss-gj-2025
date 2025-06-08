@@ -41,10 +41,10 @@ texture = ExtResource("2_dsmvr")
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 0.225
-offset_left = 222.0
+offset_left = 224.0
 offset_top = -2.0
-offset_right = 347.0
-offset_bottom = 51.275
+offset_right = 343.0
+offset_bottom = 52.275
 color = Color(0.134241, 0.970344, 0.531923, 1)
 
 [node name="Design" type="ColorRect" parent="Timer Canvas/BarContainer"]
