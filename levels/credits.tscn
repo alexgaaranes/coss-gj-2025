@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://h3ofaw3c1he3"]
+
+[ext_resource type="Script" uid="uid://cu16vgkk5t8qj" path="res://levels/credits.gd" id="1_2ox7f"]
+[ext_resource type="PackedScene" uid="uid://bg6dqo3jgsd58" path="res://levels/menu_parallax.tscn" id="1_oat60"]
+[ext_resource type="Texture2D" uid="uid://beywhlghcdj8p" path="res://assets/ui/buttons/back_button.png" id="6_2ox7f"]
+[ext_resource type="PackedScene" uid="uid://dk58ddpvq84hl" path="res://levels/credits_scrolling_border.tscn" id="7_0k2vd"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_2ox7f")
+
+[node name="MenuParallax" parent="." instance=ExtResource("1_oat60")]
+
+[node name="BackButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 8.0
+offset_right = 358.0
+offset_bottom = 78.0
+texture_normal = ExtResource("6_2ox7f")
+
+[node name="CreditsParallax" parent="." instance=ExtResource("7_0k2vd")]
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

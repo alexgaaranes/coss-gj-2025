@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://41dwkup4ipxm"]
 
-[ext_resource type="Script" uid="uid://t8rnlq2nrvns" path="res://scripts/game/game_level.gd" id="1_2i5ty"]
+[ext_resource type="Script" path="res://scripts/game/game_level.gd" id="1_2i5ty"]
 [ext_resource type="PackedScene" uid="uid://bhjygflt3q81y" path="res://scenes/maps/fiesta.tscn" id="1_sklrn"]
 [ext_resource type="PackedScene" uid="uid://bf4s1yn03bevd" path="res://scenes/audio/sfx_handler.tscn" id="1_wtvao"]
 [ext_resource type="PackedScene" uid="uid://6er8nk8tyg17" path="res://scenes/player/player.tscn" id="2_d65c1"]
@@ -13,11 +13,14 @@ size = Vector2(15.5556, 20)
 size = Vector2(128, 384)
 
 [sub_resource type="Environment" id="Environment_wtvao"]
-tonemap_mode = 3
+background_mode = 3
 glow_enabled = true
 glow_intensity = 0.3
-glow_bloom = 1.0
-glow_hdr_threshold = 1.5
+glow_bloom = 0.2
+glow_hdr_threshold = 0.86
+glow_hdr_luminance_cap = 9.8
+fog_enabled = true
+fog_light_energy = 0.0
 
 [node name="GameLevel" type="Node2D"]
 process_mode = 1
@@ -54,3 +57,10 @@ offset_bottom = -27.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wtvao")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+rotation = -0.127409
+color = Color(1, 1, 0.294118, 0.462745)
+energy = 0.2
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.752941)
